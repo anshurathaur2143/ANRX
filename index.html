@@ -209,6 +209,12 @@
 @media(max-width:560px){.capability-grid{grid-template-columns:1fr}.capability-grid .topic-card{min-height:0}.case-stage-panel>div{grid-template-columns:1fr;gap:5px}.case-stage-btn{flex:1;padding:9px 7px}}
 @media(prefers-reduced-motion:reduce){.capability-grid .topic-card,.case-stage-btn{transition:none}}
 
+/* Make every SDLC orbit node readable on hover/focus, including Test, and clarify the central guide CTA. */
+.orbit-node:hover span,.orbit-node:focus-visible span,.orbit-node.active span{color:#fff}
+.orbit-node:hover small,.orbit-node:focus-visible small,.orbit-node.active small{color:#fff}
+#openSdlc{cursor:pointer;transition:background .2s,color .2s,border-color .2s,transform .2s,box-shadow .2s}
+#openSdlc:hover,#openSdlc:focus-visible{background:#ff3548!important;color:#fff!important;border-color:#ff8792!important;transform:translateY(-2px);box-shadow:0 0 0 4px #ff35481f;outline:none}
+
 /* Requested fixes: restore capability strip, improve contrast, and prevent HRMS artwork collisions. */
 .hero-capabilities{display:flex;flex-wrap:wrap;gap:10px;margin:0 auto 28px;padding:0 0 28px}
 .hero-capabilities span{border:1px solid rgba(255,255,255,.14);background:#111116;border-radius:7px;padding:10px 13px;color:#f4f4f8;font-size:.78rem;transition:color .2s,border-color .2s,background .2s}
