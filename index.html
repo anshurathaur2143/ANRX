@@ -215,29 +215,28 @@
 #openSdlc{cursor:pointer;transition:background .2s,color .2s,border-color .2s,transform .2s,box-shadow .2s}
 #openSdlc:hover,#openSdlc:focus-visible{background:#ff3548!important;color:#fff!important;border-color:#ff8792!important;transform:translateY(-2px);box-shadow:0 0 0 4px #ff35481f;outline:none}
 
-/* Full-width BA responsibility band and precise headline contrast. */
-.ba-responsibilities{width:100%;margin:0 0 36px;padding:30px 0 34px;background:linear-gradient(100deg,#111116,#171116 55%,#111116);border-top:1px solid #ffffff12;border-bottom:1px solid #ffffff12}
+/* Simple full-width BA skill strip; no extra heading or explanatory copy. */
+.ba-responsibilities{width:100%;margin:0 0 36px;padding:22px 0 26px;background:#101116;border-top:1px solid #ffffff12;border-bottom:1px solid #ffffff12}
 .ba-responsibilities-inner{width:min(1200px,calc(100% - 48px));margin:0 auto}
-.ba-responsibilities-heading{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:22px}
-.ba-responsibilities-heading .eyebrow{color:#ff8792;letter-spacing:.12em;font-size:.68rem}
-.ba-responsibilities-heading p{max-width:520px;margin:0;color:#bdbac6;font-size:.85rem;line-height:1.6;text-align:right}
-.ba-responsibilities-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;border-top:1px solid #ffffff17;border-left:1px solid #ffffff17}
-.ba-responsibilities-grid>div{min-height:76px;display:flex;align-items:center;gap:12px;padding:16px 18px;border-right:1px solid #ffffff17;border-bottom:1px solid #ffffff17;background:#ffffff03;transition:background .18s,border-color .18s}
-.ba-responsibilities-grid>div:hover{background:#ff35480d}
-.ba-responsibilities-grid b{flex:0 0 auto;font: .65rem "DM Mono",monospace;color:#ff6876}
-.ba-responsibilities-grid span{color:#f5f4f8;font-size:.83rem;font-weight:650;line-height:1.45}
+.ba-responsibilities-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.ba-responsibilities-grid>div{min-height:54px;display:flex;align-items:center;padding:12px 16px;border:1px solid #ffffff16;border-radius:6px;background:#ffffff03;transition:background .18s,border-color .18s}
+.ba-responsibilities-grid>div:hover{background:#ffffff08;border-color:#ffffff35}
+.ba-responsibilities-grid span{color:#f0f0f4;font-size:.84rem;font-weight:600;line-height:1.4}
 .hero h1 .hero-white{display:inline!important;color:#fff!important;-webkit-text-fill-color:#fff;-webkit-text-stroke:0!important;text-shadow:none}
 .hero h1 .hero-red{display:inline!important;color:#ff3548!important;-webkit-text-fill-color:#ff3548;-webkit-text-stroke:0!important;text-shadow:none}
-/* HRMS artwork: reserve a dedicated header row and keep all nine modules in a clear grid. */
-.project-image-hrms{min-height:310px}
-.project-image-hrms .hrms-visual-title{top:16px;left:20px;right:20px;line-height:1.45;letter-spacing:.09em;font-size:.7rem;max-width:none;overflow:visible}
-.project-image-hrms .hrms-visual-title small{font-size:.65rem;margin-top:5px;line-height:1.4;color:#ffb2bb}
-.project-image-hrms .hrms-module-map{inset:91px 10% 47px;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:repeat(3,minmax(0,1fr));gap:10px;align-items:stretch;justify-items:stretch}
-.project-image-hrms .hrms-module-map span{min-width:0;width:100%;min-height:32px;padding:7px 5px;font-size:.65rem;letter-spacing:.025em;white-space:nowrap}
-.project-image-hrms .hrms-module-map .hrms-hub{min-width:0;min-height:40px;font-size:.78rem}
-.project-image-hrms .hrms-visual-foot{bottom:13px;left:15px;right:15px;text-align:center;font-size:.63rem;letter-spacing:.1em}
-@media(max-width:900px){.ba-responsibilities-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.ba-responsibilities-heading{align-items:start;flex-direction:column;gap:8px}.ba-responsibilities-heading p{text-align:left}}
-@media(max-width:560px){.ba-responsibilities-inner{width:calc(100% - 32px)}.ba-responsibilities{padding:24px 0}.ba-responsibilities-grid{grid-template-columns:1fr}.ba-responsibilities-grid>div{min-height:58px;padding:12px 14px}.project-image-hrms{min-height:290px}.project-image-hrms .hrms-module-map{inset:88px 6% 43px;gap:7px}.project-image-hrms .hrms-module-map span{font-size:.58rem;padding:6px 3px}}
+/* Neutral, separated HRMS artwork header and module grid. */
+.project-image-hrms{min-height:310px;background:radial-gradient(circle at 78% 22%,#71809618,transparent 34%),linear-gradient(135deg,#171b23,#101116 65%,#1b2029)}
+.project-image-hrms:before{border-color:#aab4c01c;background:linear-gradient(135deg,#ffffff08,#ffffff02);box-shadow:12px 12px 0 -1px #ffffff05,24px 24px 0 -1px #ffffff03}
+.project-image-hrms:after{background:linear-gradient(0deg,#11111618,transparent 70%),linear-gradient(90deg,#ffffff04,transparent)}
+.project-image-hrms .hrms-visual-title{position:absolute;top:15px;left:14px;right:14px;z-index:3;text-align:center;line-height:1.4;letter-spacing:.035em;font-size:clamp(.48rem,1.1vw,.67rem);font-weight:500;white-space:nowrap;color:#e7e9ee;overflow:visible}
+.project-image-hrms .hrms-module-map{inset:58px 12% 39px;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:repeat(3,minmax(0,1fr));gap:9px;align-items:stretch;justify-items:stretch}
+.project-image-hrms .hrms-module-map:before,.project-image-hrms .hrms-module-map:after{background:#9aa6b522}
+.project-image-hrms .hrms-module-map span{min-width:0;width:100%;min-height:30px;padding:7px 5px;font-size:.63rem;letter-spacing:.025em;white-space:nowrap;border-color:#8793a044;background:#171a21;color:#e6e8ed;box-shadow:0 3px 10px #0003}
+.project-image-hrms .hrms-module-map .hrms-hub{min-width:0;min-height:38px;font-size:.76rem;background:#28313c;border-color:#93a4b866;color:#fff;box-shadow:0 0 16px #8b9bb20d}
+.project-image-hrms .hrms-visual-foot{bottom:10px;left:15px;right:15px;text-align:center;font-size:.58rem;letter-spacing:.08em;color:#aeb5c0}
+.project-image-hrms .hrms-visual-foot i{color:#b8c1cd}
+@media(max-width:900px){.ba-responsibilities-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.ba-responsibilities-inner{width:calc(100% - 32px)}.ba-responsibilities{padding:18px 0 22px}.ba-responsibilities-grid{grid-template-columns:1fr}.ba-responsibilities-grid>div{min-height:48px;padding:11px 13px}.project-image-hrms{min-height:290px}.project-image-hrms .hrms-visual-title{font-size:clamp(.43rem,2.05vw,.59rem);letter-spacing:0}.project-image-hrms .hrms-module-map{inset:55px 6% 37px;gap:7px}.project-image-hrms .hrms-module-map span{font-size:.58rem;padding:6px 3px}}
 /* Balanced three-metric impact strip and a clear secondary action in the case lab. */
 .metrics{grid-template-columns:repeat(3,minmax(0,1fr))}
 .case-stage-ask{margin-top:12px;padding:8px 11px;border:1px solid #ff687655;border-radius:6px;background:#24121a;color:#ffb1b8;font-size:.72rem;font-weight:700;cursor:pointer;transition:all .2s}
@@ -278,13 +277,13 @@
  </div>
  <div class="sdlc-hero-foot"><span><i></i> ITERATIVE BY DESIGN</span><span>VALUE · QUALITY · DELIVERY</span></div>
 </div></div></section>
-<section class="ba-responsibilities" aria-label="Business Analyst roles and responsibilities"><div class="ba-responsibilities-inner"><div class="ba-responsibilities-heading"><span class="eyebrow">BUSINESS ANALYST · CORE RESPONSIBILITIES</span><p>Turning business needs into clear requirements, delivery decisions and validated outcomes.</p></div><div class="ba-responsibilities-grid"><div><b>01</b><span>Requirement Gathering &amp; Elicitation</span></div><div><b>02</b><span>Stakeholder Management</span></div><div><b>03</b><span>BRD, FRD &amp; SRS Documentation</span></div><div><b>04</b><span>User Stories &amp; Acceptance Criteria</span></div><div><b>05</b><span>Process Mapping &amp; Gap Analysis</span></div><div><b>06</b><span>Agile / Scrum Delivery</span></div><div><b>07</b><span>Cross-functional Team Coordination</span></div><div><b>08</b><span>UAT Coordination &amp; Validation</span></div></div></div></section>
+<section class="ba-responsibilities" aria-label="Business Analyst skills"><div class="ba-responsibilities-inner"><div class="ba-responsibilities-grid"><div><span>Requirement Gathering</span></div><div><span>Requirement Analysis</span></div><div><span>Business Stakeholder Management</span></div><div><span>BRD Documentation</span></div><div><span>FRD Documentation</span></div><div><span>User Stories</span></div><div><span>Acceptance Criteria</span></div><div><span>Process Mapping</span></div><div><span>UAT Coordination</span></div></div></div></section>
 <section class="section" id="snapshot"><div class="wrap"><div class="section-head reveal"><div><div class="eyebrow">DELIVERY IMPACT</div><h2>Evidence that connects <span class="accent">analysis to outcomes.</span></h2></div><p>Examples of delivery contributions across requirements quality, validation, and release readiness.</p></div><div class="metrics reveal"><div class="metric"><div class="metric-value">150<span class="accent">+</span></div><div class="metric-label">Test cases authored*</div></div><div class="metric"><div class="metric-value">22<span class="accent">%</span></div><div class="metric-label">Fewer post-release defects*</div></div><div class="metric"><div class="metric-value">25<span class="accent">%</span></div><div class="metric-label">Less requirements-related rework*</div></div></div></div></section>
 <section class="section" id="projects"><div class="wrap">
   <div class="section-head reveal"><div><div class="eyebrow">SELECTED PROJECT EXPERIENCE</div><h2>Business problems. <span class="accent">Traceable decisions.</span></h2></div><p>Explore the problem, workflow logic, requirement decisions, validation scenarios and delivery constraints behind each case study.</p></div>
   <div class="projects" id="caseGrid">
   <article class="project reveal" data-search="hrms human resources vendor vms ats timesheet leave payroll learning lms business rules brd frd uat compliance">
-    <div class="project-image project-image-hrms"><span class="project-index">CASE 01 / HRMS</span><div class="hrms-visual-title">WORKFORCE PLATFORM <small>9 connected modules</small></div><div class="hrms-module-map" aria-label="HRMS modules"><span>VMS</span><span>ATS</span><span>TIME</span><span>LEAVE</span><span class="hrms-hub">HRMS</span><span>PAYROLL</span><span>LMS</span><span>HMS</span><span>CLAIMS</span></div><div class="hrms-visual-foot">PEOPLE <i>↔</i> POLICY <i>↔</i> PAYROLL</div></div>
+    <div class="project-image project-image-hrms"><div class="hrms-visual-title">CASE 01 / HRMS &nbsp;·&nbsp; US HOSPITAL WORKFORCE PLATFORM &nbsp;·&nbsp; 9 MODULES</div><div class="hrms-module-map" aria-label="HRMS modules"><span>VMS</span><span>ATS</span><span>TIME</span><span>LEAVE</span><span class="hrms-hub">HRMS</span><span>PAYROLL</span><span>LMS</span><span>HMS</span><span>CLAIMS</span></div><div class="hrms-visual-foot">PEOPLE <i>↔</i> POLICY <i>↔</i> PAYROLL</div></div>
     <div class="project-body"><div class="project-meta">HEALTHCARE · HR TECHNOLOGY · 9 MODULES</div><h3>HRMS suite for US hospital clients</h3><p class="case-lead">A connected platform supporting 1,200+ employees across workforce operations and healthcare SaaS. The business challenge is not simply capturing data: each module has its own roles, policy rules, approval states, exceptions and dependencies.</p>
     <div class="case-facts"><div><strong>9</strong><span>modules</span></div><div><strong>1,200+</strong><span>employees supported</span></div><div><strong>3–8 weeks</strong><span>documented client rollout range</span></div></div>
     <div class="chips"><span class="chip">Requirement elicitation</span><span class="chip">BRD / FRD</span><span class="chip">Business rules</span><span class="chip">Workflow models</span><span class="chip">UAT & traceability</span></div>
