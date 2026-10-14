@@ -215,21 +215,29 @@
 #openSdlc{cursor:pointer;transition:background .2s,color .2s,border-color .2s,transform .2s,box-shadow .2s}
 #openSdlc:hover,#openSdlc:focus-visible{background:#ff3548!important;color:#fff!important;border-color:#ff8792!important;transform:translateY(-2px);box-shadow:0 0 0 4px #ff35481f;outline:none}
 
-/* Requested fixes: restore capability strip, improve contrast, and prevent HRMS artwork collisions. */
-.hero-capabilities{display:flex;flex-wrap:wrap;gap:10px;margin:0 auto 28px;padding:0 0 28px}
-.hero-capabilities span{border:1px solid rgba(255,255,255,.14);background:#111116;border-radius:7px;padding:10px 13px;color:#f4f4f8;font-size:.78rem;transition:color .2s,border-color .2s,background .2s}
-.hero-capabilities span:hover{color:#fff;background:#ff35481b;border-color:#ff6876}
-.hero h1 .hero-white{display:inline;color:#fff;-webkit-text-stroke:0}
-.hero h1 .hero-red{display:inline;color:var(--red);-webkit-text-stroke:0}
-.hero-capabilities{display:flex;flex-wrap:wrap;gap:10px;margin:0 auto 28px;padding:0 0 28px}
-.hero-capabilities span{border:1px solid rgba(255,255,255,.14);background:#111116;border-radius:7px;padding:10px 13px;color:#f4f4f8;font-size:.78rem;transition:color .2s,border-color .2s,background .2s}
-.hero-capabilities span:hover{color:#fff;background:#ff35481b;border-color:#ff6876}
-.hero-capabilities span:first-child{border-color:#ff35486b}
-.project-image-hrms .hrms-visual-title{top:15px;left:18px;right:18px;line-height:1.5;max-width:calc(100% - 36px);overflow-wrap:anywhere}
-.project-image-hrms .hrms-module-map{inset:76px 10% 38px;gap:7px}
-.project-image-hrms .hrms-visual-foot{bottom:10px;left:12px;right:12px;text-align:center;font-size:.58rem;letter-spacing:.05em}
-.hero .hero-copy{max-width:610px}
-@media(max-width:700px){.hero-capabilities{gap:7px;padding-bottom:20px}.hero-capabilities span{font-size:.7rem;padding:8px 10px}.project-image-hrms .hrms-module-map{inset:78px 7% 38px;gap:5px}.project-image-hrms .hrms-module-map span{font-size:.6rem}}
+/* Full-width BA responsibility band and precise headline contrast. */
+.ba-responsibilities{width:100%;margin:0 0 36px;padding:30px 0 34px;background:linear-gradient(100deg,#111116,#171116 55%,#111116);border-top:1px solid #ffffff12;border-bottom:1px solid #ffffff12}
+.ba-responsibilities-inner{width:min(1200px,calc(100% - 48px));margin:0 auto}
+.ba-responsibilities-heading{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:22px}
+.ba-responsibilities-heading .eyebrow{color:#ff8792;letter-spacing:.12em;font-size:.68rem}
+.ba-responsibilities-heading p{max-width:520px;margin:0;color:#bdbac6;font-size:.85rem;line-height:1.6;text-align:right}
+.ba-responsibilities-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;border-top:1px solid #ffffff17;border-left:1px solid #ffffff17}
+.ba-responsibilities-grid>div{min-height:76px;display:flex;align-items:center;gap:12px;padding:16px 18px;border-right:1px solid #ffffff17;border-bottom:1px solid #ffffff17;background:#ffffff03;transition:background .18s,border-color .18s}
+.ba-responsibilities-grid>div:hover{background:#ff35480d}
+.ba-responsibilities-grid b{flex:0 0 auto;font: .65rem "DM Mono",monospace;color:#ff6876}
+.ba-responsibilities-grid span{color:#f5f4f8;font-size:.83rem;font-weight:650;line-height:1.45}
+.hero h1 .hero-white{display:inline!important;color:#fff!important;-webkit-text-fill-color:#fff;-webkit-text-stroke:0!important;text-shadow:none}
+.hero h1 .hero-red{display:inline!important;color:#ff3548!important;-webkit-text-fill-color:#ff3548;-webkit-text-stroke:0!important;text-shadow:none}
+/* HRMS artwork: reserve a dedicated header row and keep all nine modules in a clear grid. */
+.project-image-hrms{min-height:310px}
+.project-image-hrms .hrms-visual-title{top:16px;left:20px;right:20px;line-height:1.45;letter-spacing:.09em;font-size:.7rem;max-width:none;overflow:visible}
+.project-image-hrms .hrms-visual-title small{font-size:.65rem;margin-top:5px;line-height:1.4;color:#ffb2bb}
+.project-image-hrms .hrms-module-map{inset:91px 10% 47px;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:repeat(3,minmax(0,1fr));gap:10px;align-items:stretch;justify-items:stretch}
+.project-image-hrms .hrms-module-map span{min-width:0;width:100%;min-height:32px;padding:7px 5px;font-size:.65rem;letter-spacing:.025em;white-space:nowrap}
+.project-image-hrms .hrms-module-map .hrms-hub{min-width:0;min-height:40px;font-size:.78rem}
+.project-image-hrms .hrms-visual-foot{bottom:13px;left:15px;right:15px;text-align:center;font-size:.63rem;letter-spacing:.1em}
+@media(max-width:900px){.ba-responsibilities-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.ba-responsibilities-heading{align-items:start;flex-direction:column;gap:8px}.ba-responsibilities-heading p{text-align:left}}
+@media(max-width:560px){.ba-responsibilities-inner{width:calc(100% - 32px)}.ba-responsibilities{padding:24px 0}.ba-responsibilities-grid{grid-template-columns:1fr}.ba-responsibilities-grid>div{min-height:58px;padding:12px 14px}.project-image-hrms{min-height:290px}.project-image-hrms .hrms-module-map{inset:88px 6% 43px;gap:7px}.project-image-hrms .hrms-module-map span{font-size:.58rem;padding:6px 3px}}
 /* Balanced three-metric impact strip and a clear secondary action in the case lab. */
 .metrics{grid-template-columns:repeat(3,minmax(0,1fr))}
 .case-stage-ask{margin-top:12px;padding:8px 11px;border:1px solid #ff687655;border-radius:6px;background:#24121a;color:#ffb1b8;font-size:.72rem;font-weight:700;cursor:pointer;transition:all .2s}
@@ -270,7 +278,7 @@
  </div>
  <div class="sdlc-hero-foot"><span><i></i> ITERATIVE BY DESIGN</span><span>VALUE · QUALITY · DELIVERY</span></div>
 </div></div></section>
-<div class="hero-capabilities wrap" aria-label="Core Business Analyst capabilities"><span>Requirement Gathering &amp; Elicitation</span><span>Stakeholder Management</span><span>Agile Delivery</span><span>Process Mapping</span><span>UAT &amp; Validation</span></div>
+<section class="ba-responsibilities" aria-label="Business Analyst roles and responsibilities"><div class="ba-responsibilities-inner"><div class="ba-responsibilities-heading"><span class="eyebrow">BUSINESS ANALYST · CORE RESPONSIBILITIES</span><p>Turning business needs into clear requirements, delivery decisions and validated outcomes.</p></div><div class="ba-responsibilities-grid"><div><b>01</b><span>Requirement Gathering &amp; Elicitation</span></div><div><b>02</b><span>Stakeholder Management</span></div><div><b>03</b><span>BRD, FRD &amp; SRS Documentation</span></div><div><b>04</b><span>User Stories &amp; Acceptance Criteria</span></div><div><b>05</b><span>Process Mapping &amp; Gap Analysis</span></div><div><b>06</b><span>Agile / Scrum Delivery</span></div><div><b>07</b><span>Cross-functional Team Coordination</span></div><div><b>08</b><span>UAT Coordination &amp; Validation</span></div></div></div></section>
 <section class="section" id="snapshot"><div class="wrap"><div class="section-head reveal"><div><div class="eyebrow">DELIVERY IMPACT</div><h2>Evidence that connects <span class="accent">analysis to outcomes.</span></h2></div><p>Examples of delivery contributions across requirements quality, validation, and release readiness.</p></div><div class="metrics reveal"><div class="metric"><div class="metric-value">150<span class="accent">+</span></div><div class="metric-label">Test cases authored*</div></div><div class="metric"><div class="metric-value">22<span class="accent">%</span></div><div class="metric-label">Fewer post-release defects*</div></div><div class="metric"><div class="metric-value">25<span class="accent">%</span></div><div class="metric-label">Less requirements-related rework*</div></div></div></div></section>
 <section class="section" id="projects"><div class="wrap">
   <div class="section-head reveal"><div><div class="eyebrow">SELECTED PROJECT EXPERIENCE</div><h2>Business problems. <span class="accent">Traceable decisions.</span></h2></div><p>Explore the problem, workflow logic, requirement decisions, validation scenarios and delivery constraints behind each case study.</p></div>
