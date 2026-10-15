@@ -12,9 +12,29 @@ module.exports = async function handler(req, res) {
   const isOpenAI = baseUrl.includes('api.openai.com');
   const apiKey = isOpenAI ? (process.env.OPENAI_API_KEY || process.env.AI_API_KEY) : (process.env.AI_API_KEY || process.env.OPENROUTER_API_KEY || process.env.OPENAI_API_KEY);
   if (!apiKey) {
-    return res.status(503).json({
-      error: 'No AI API key is configured yet. Add OPENAI_API_KEY (for OpenAI) or OPENROUTER_API_KEY in Vercel Project Settings → Environment Variables, then redeploy.'
-    });
+    const lastUserMessage = Array.isArray(req.body && req.body.messages)
+      ? [...req.body.messages].reverse().find((item) => item && item.role === 'user' && typeof item.content === 'string')
+      : null;
+    const question = lastUserMessage ? lastUserMessage.content.trim().toLowerCase() : '';
+    const freeAnswers = [
+      { terms: ['user story', 'user stories', 'acceptance criteria'], answer: 'A practical user story follows: “As a [user], I want [capability], so that [business value].” Add clear, testable acceptance criteria—often Given/When/Then—and confirm edge cases with stakeholders. Example: As a patient, I want to view available appointment slots so that I can book a suitable time.' },
+      { terms: ['brd', 'business requirement document'], answer: 'A BRD explains the business problem, objectives, scope, stakeholders, high-level requirements, assumptions, constraints, and success measures. Keep it focused on what the business needs and why. Detailed system behavior can be captured in the FRD or user stories.' },
+      { terms: ['frd', 'functional requirement'], answer: 'An FRD describes how the system should behave: features, workflows, business rules, validations, inputs/outputs, exceptions, and integrations. Make each requirement clear, testable, and traceable to its source.' },
+      { terms: ['rtm', 'traceability matrix'], answer: 'A Requirements Traceability Matrix maps each requirement to its source, user story or design, test cases, and status. It helps confirm that requirements are covered by testing and makes change-impact analysis easier.' },
+      { terms: ['uat', 'user acceptance testing'], answer: 'For UAT, agree on business scenarios and acceptance criteria, prepare realistic test data, coordinate business users, record pass/fail results and defects, retest fixes, and obtain business sign-off. Separate product defects from data, environment, or training issues.' },
+      { terms: ['hrms', 'human resource'], answer: 'The HRMS portfolio project covers nine connected modules for US hospital clients, including Vendor Management, Applicant Tracking, Timesheet, Leave Management, Payroll, and Learning Management. The solution supports 1,200+ employees. Relevant BA deliverables include BRDs, FRDs, business rules, process maps, user stories, RTM, and UAT coordination.' },
+      { terms: ['hospital management', 'hms', 'patient registration', 'bed management'], answer: 'The HMS SaaS project supports patient registration and billing, bed/room management, and doctor scheduling/rosters across 8+ hospital sites. The reported outcomes include 30% less manual bed-tracking effort and 90%+ first-pass QA acceptance.' },
+      { terms: ['e-commerce', 'ecommerce', 'cart abandonment', 'checkout'], answer: 'The e-commerce project covered product catalog, order management, checkout, payments, API integrations, SQL analysis, and UAT across 6+ releases. The reported result was 15% lower cart abandonment, with the platform serving 50,000+ users.' },
+      { terms: ['elearning', 'e-learning', 'umgc', 'digital publishing', 'ai editing'], answer: 'The AI eLearning/digital publishing project included AI-assisted editing, summarization, grammar correction, content optimization, version control, layout preview, and publishing approvals. It supported 25+ courses and 100+ content pieces per month, with reported content turnaround time reduced by 25%.' },
+      { terms: ['skills', 'tools', 'technology'], answer: 'Relevant BA skills include requirement gathering and analysis, stakeholder management, BRD/FRD/PRD, user stories, acceptance criteria, use cases, BPMN/process mapping, RTM, UAT, defect management, gap/impact analysis, Agile/Scrum, SDLC, Jira, Confluence, SQL, Excel, Power BI, Tableau, Figma, and Visio.' },
+      { terms: ['contact', 'email', 'linkedin'], answer: 'You can contact Anshu Rathaur at ianshurathaur@gmail.com or connect on LinkedIn: https://www.linkedin.com/in/ianshurathaur.' },
+      { terms: ['about', 'who is anshu', 'experience', 'portfolio'], answer: 'This is Anshu Rathaur’s Business Analyst portfolio, highlighting 4+ years of experience across healthcare, e-commerce, automobile, and eLearning domains. It showcases project outcomes and BA delivery practices. Ask about a project, BA artifact, or interview topic to explore further.' }
+    ];
+    const match = freeAnswers.find((item) => item.terms.some((term) => question.includes(term)));
+    const answer = match
+      ? match.answer
+      : 'I’m the free ANRX portfolio assistant. I can answer questions about Anshu’s projects, BA skills, BRD/FRD, user stories, acceptance criteria, RTM, UAT, and interview preparation. Try asking about one of those topics. This version works without a paid AI API, so its replies are built-in rather than open-ended AI responses.';
+    return res.status(200).json({ reply: answer, mode: 'free-built-in' });
   }
 
   const model = process.env.AI_MODEL || (isOpenAI ? 'gpt-6-luna' : 'openrouter/free');
