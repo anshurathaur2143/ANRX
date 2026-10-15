@@ -8,15 +8,16 @@ module.exports = async function handler(req, res) {
     return res.status(405).json({ error: 'Use POST to send a chat message.' });
   }
 
-  const apiKey = process.env.AI_API_KEY || process.env.OPENROUTER_API_KEY || process.env.OPENAI_API_KEY;
+  const baseUrl = (process.env.AI_BASE_URL || (process.env.OPENAI_API_KEY && !process.env.AI_API_KEY ? 'https://api.openai.com/v1' : 'https://openrouter.ai/api/v1')).replace(/\/+$/, '');
+  const isOpenAI = baseUrl.includes('api.openai.com');
+  const apiKey = process.env.AI_API_KEY || (isOpenAI ? process.env.OPENAI_API_KEY : process.env.OPENROUTER_API_KEY) || process.env.OPENAI_API_KEY;
   if (!apiKey) {
     return res.status(503).json({
-      error: 'No AI API key is configured yet. Add AI_API_KEY in Vercel Project Settings → Environment Variables, then redeploy.'
+      error: 'No AI API key is configured yet. Add OPENAI_API_KEY (for OpenAI) or OPENROUTER_API_KEY in Vercel Project Settings → Environment Variables, then redeploy.'
     });
   }
 
-  const baseUrl = (process.env.AI_BASE_URL || 'https://openrouter.ai/api/v1').replace(/\/+$/, '');
-  const model = process.env.AI_MODEL || 'openrouter/free';
+  const model = process.env.AI_MODEL || (isOpenAI ? 'gpt-6-luna' : 'openrouter/free');
   const incoming = req.body && req.body.messages;
   if (!Array.isArray(incoming) || incoming.length === 0 || incoming.length > 24) {
     return res.status(400).json({ error: 'Send between 1 and 24 conversation messages.' });
