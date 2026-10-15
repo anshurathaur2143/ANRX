@@ -8,9 +8,9 @@ module.exports = async function handler(req, res) {
     return res.status(405).json({ error: 'Use POST to send a chat message.' });
   }
 
-  const baseUrl = (process.env.AI_BASE_URL || (process.env.OPENAI_API_KEY && !process.env.AI_API_KEY ? 'https://api.openai.com/v1' : 'https://openrouter.ai/api/v1')).replace(/\/+$/, '');
+  const baseUrl = (process.env.AI_BASE_URL || (process.env.OPENAI_API_KEY ? 'https://api.openai.com/v1' : 'https://openrouter.ai/api/v1')).replace(/\/+$/, '');
   const isOpenAI = baseUrl.includes('api.openai.com');
-  const apiKey = process.env.AI_API_KEY || (isOpenAI ? process.env.OPENAI_API_KEY : process.env.OPENROUTER_API_KEY) || process.env.OPENAI_API_KEY;
+  const apiKey = isOpenAI ? (process.env.OPENAI_API_KEY || process.env.AI_API_KEY) : (process.env.AI_API_KEY || process.env.OPENROUTER_API_KEY || process.env.OPENAI_API_KEY);
   if (!apiKey) {
     return res.status(503).json({
       error: 'No AI API key is configured yet. Add OPENAI_API_KEY (for OpenAI) or OPENROUTER_API_KEY in Vercel Project Settings → Environment Variables, then redeploy.'
