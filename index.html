@@ -63,7 +63,7 @@
     @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
 
   
-/* NEW: Gemini AI, BA tools, theme, count-up and responsive polish */
+/* UPGRADED: Offline assistant, theme, count-up, and responsive polish */
 :root{color-scheme:dark;--bg:#09090d;--panel:#111116;--line:rgba(255,255,255,.1);--muted:#a5a5b3;--text:#f7f7fb;--red:#ff3548;--surface:#15151c;--field:#09090d;--nav-bg:rgba(9,9,13,.82)}
 body{background:var(--bg);color:var(--text)}.topbar{background:var(--nav-bg);transition:background .25s,box-shadow .25s}.topbar.scrolled{background:var(--nav-bg);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);box-shadow:0 8px 28px #0003}
 .nav-tools{display:flex;align-items:center;gap:10px}.theme-toggle{width:40px;height:40px;display:inline-grid;place-items:center;flex:0 0 auto;border:1px solid var(--line);border-radius:9px;background:var(--panel);color:var(--text);font-size:1.05rem;cursor:pointer;transition:transform .2s,border-color .2s}.theme-toggle:hover{transform:translateY(-2px);border-color:var(--red)}
@@ -135,7 +135,7 @@ const knowledgeBase=[
 {topic:'E-commerce project',keywords:['e-commerce project','ecommerce project','ecommerce','e-commerce','checkout','cart','order management','payment gateway','b2b','b2c'],answer:'E-commerce B2B/B2C platform — supporting 50,000+ users. I analyzed product catalog management, order lifecycle, checkout and payment flows, customer journeys, and third-party API integrations. I used SQL to investigate checkout-funnel friction and identify where customers abandoned their carts. The targeted improvement contributed to a 15% reduction in cart abandonment.'},
 {topic:'eLearning project',keywords:['elearning project','e-learning','elearning','digital publishing','course authoring','content lifecycle','publishing approvals'],answer:'AI-based eLearning and digital publishing platform — covering 25+ courses. I defined requirements for AI-assisted editing, summarization, grammar correction, version control, layout preview, and publishing approvals. I mapped the content lifecycle and clarified approval rules. The work contributed to 25% faster content turnaround.'}
 ];
-function normalizeQuestion(value){return value.toLowerCase().replace(/[^a-z0-9+#.\\s-]/g,' ').replace(/\\s+/g,' ').trim()}
+function normalizeQuestion(value){return value.toLowerCase().replace(/[^a-z0-9+#.\s-]/g,' ').replace(/\s+/g,' ').trim()}
 function getAnswer(question){const q=normalizeQuestion(question);const ranked=knowledgeBase.map(item=>({item,score:item.keywords.reduce((score,k)=>score+(q.includes(normalizeQuestion(k))?Math.max(1,normalizeQuestion(k).length):0),0)})).filter(x=>x.score>0).sort((a,b)=>b.score-a.score);if(ranked.length)return ranked[0].item.answer;return 'That’s an interesting question! I’m best equipped to answer questions about Anshu’s BA skills and experience — including requirement elicitation, stakeholder management, BRD/FRD/SRS, user stories, Agile, UAT, SQL, API integration, gap analysis, risk management, and his projects in healthcare, HRMS, e-commerce, and eLearning. Try asking something specific — like “What is root cause analysis?” or “Tell me about the HRMS project.” 😊'}
 function setChatStatus(value){chatStatus.textContent=value}
 function trimChat(){const messages=[...chatLog.querySelectorAll('.bubble:not(.typing)')];while(messages.length>10){messages.shift().remove()}}
