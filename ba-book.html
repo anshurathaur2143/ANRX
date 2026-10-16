@@ -31,7 +31,21 @@
     a:focus-visible{outline:2px solid #ff7180;outline-offset:4px}
     @media(max-width:700px){.cards{grid-template-columns:1fr}.workflow{grid-template-columns:repeat(2,minmax(0,1fr))}.hero{padding-top:62px}}
     @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
-  </style>
+  /* Shared ANRX casebook design language */
+:root{--bg:#111110;--panel:#191918;--line:rgba(244,240,231,.13);--muted:#b6b2a9;--text:#f5f2ea;--red:#d85b55;--max:1080px}
+body{background:var(--bg);color:var(--text);line-height:1.72}
+.topbar{background:rgba(17,17,16,.94);border-bottom-color:var(--line)}
+.eyebrow,.accent,.number{color:#e98b83}
+.section{padding:76px 0}.section-head h2{letter-spacing:-.045em}
+.card{background:#191918;border-color:var(--line);border-radius:8px;box-shadow:none}
+.card:hover{border-color:#d85b5580;transform:translateY(-4px);box-shadow:0 14px 30px #0004}
+.card p,.intro,.section-head p{color:#c0bcb4}
+.deliverables span,.hero-stats span{border-radius:4px;border-color:#f4f0e526}
+a,button{transition:color .2s ease,background-color .2s ease,border-color .2s ease,transform .2s ease}
+a:hover{color:#e98b83}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+
+</style>
 </head>
 <body>
   <header class="topbar"><nav class="nav wrap" aria-label="Main navigation"><a class="brand" href="index.html">ANRX <span>· ANSHU RATHAUR</span></a><a href="index.html">← Back to portfolio</a></nav></header>
