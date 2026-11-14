@@ -187,10 +187,43 @@ a:hover{text-shadow:none}
  .nav-cta{font-size:.7rem;padding:8px 12px}
 }
 @media(max-width:390px){.brand{font-size:.82rem}.nav-cta{padding:7px 10px;font-size:.66rem}}
+
+/* Apple-inspired hover navigation: full-width category panels, no underline states. */
+.topbar{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.88);backdrop-filter:saturate(180%) blur(22px);-webkit-backdrop-filter:saturate(180%) blur(22px);overflow:visible}
+.nav{position:relative;z-index:101}
+.navlinks{align-self:stretch;gap:clamp(10px,1.55vw,22px)}
+.nav-item{height:100%;display:flex;align-items:center;position:static}
+.navlinks .nav-item>a{position:relative;display:flex;align-items:center;height:100%;padding:0 1px;color:#424245!important;text-decoration:none!important;text-shadow:none!important;transition:opacity .2s ease}
+.navlinks .nav-item>a:before,.navlinks .nav-item>a:after{display:none!important;content:none!important}
+.navlinks .nav-item:hover>a,.navlinks .nav-item:focus-within>a{color:#1d1d1f!important;opacity:.62}
+.navlinks .nav-item>a[aria-current],.navlinks .nav-item>a[aria-current="page"],.navlinks .nav-item>a[aria-current="location"]{color:#424245!important}
+.nav-panel{position:absolute;left:0;right:0;top:100%;z-index:120;background:rgba(255,255,255,.97);backdrop-filter:saturate(180%) blur(26px);-webkit-backdrop-filter:saturate(180%) blur(26px);border-top:1px solid rgba(29,29,31,.055);border-bottom:1px solid rgba(29,29,31,.10);box-shadow:0 24px 44px rgba(0,0,0,.09);opacity:0;visibility:hidden;pointer-events:none;transform:translateY(-8px);transition:opacity .22s ease,transform .28s cubic-bezier(.2,.75,.25,1),visibility .22s}
+.nav-item:hover .nav-panel,.nav-item:focus-within .nav-panel{opacity:1;visibility:visible;pointer-events:auto;transform:translateY(0)}
+.nav-panel-inner{width:min(1060px,calc(100% - 64px));margin:0 auto;padding:30px 0 34px;display:grid;grid-template-columns:1.2fr repeat(3,minmax(130px,1fr));align-items:start;gap:22px}
+.nav-panel-kicker{font-size:.65rem;font-weight:600;letter-spacing:.11em;color:#86868b;padding-top:3px}
+.nav-panel-inner>a{font-size:1.02rem;line-height:1.35;font-weight:600;letter-spacing:-.025em;color:#1d1d1f;text-decoration:none;transition:color .18s ease,transform .18s ease}
+.nav-panel-inner>a:hover{color:#0071e3;transform:translateX(2px)}
+.navlinks .nav-item>a:hover:after,.navlinks .nav-item>a[aria-current]:after{display:none!important;content:none!important}
+@media(max-width:850px){
+ .topbar{overflow:visible}
+ .navlinks{align-items:stretch}
+ .nav-item{height:auto;display:block;border-bottom:1px solid #f0f0f2}
+ .navlinks .nav-item>a{height:auto;padding:13px 2px;font-size:.86rem}
+ .nav-panel{display:none!important}
+ .navlinks .nav-item>a:after{display:none!important}
+}
+@media(prefers-reduced-motion:reduce){.nav-panel,.nav-panel-inner>a,.navlinks .nav-item>a{transition:none!important}}
 </style>
 </head>
 <body data-theme="light">
-  <header class="topbar"><nav class="nav wrap" aria-label="Main navigation"><a class="brand" href="index.html#home"><span class="brand-mark">AR</span> ANSHU RATHAUR<span class="brand-accent">.</span></a><button class="mobile-menu" id="bookMenuToggle" aria-label="Open navigation" aria-expanded="false">☰</button><div class="navlinks" id="bookNavlinks"><a href="index.html#home">HOME</a><a href="index.html#roadmap">EXPERIENCE</a><a href="index.html#projects">PROJECTS</a><a href="index.html#skills">PROCESS</a><a href="#top" aria-current="page">BA BOOK</a><a href="index.html#assistant">ASSISTANT</a></div><a class="nav-cta" href="index.html#contact">CONTACT ↗</a></nav></header>
+  <header class="topbar"><nav class="nav wrap" aria-label="Main navigation"><a class="brand" href="index.html#home"><span class="brand-mark">AR</span> ANSHU RATHAUR<span class="brand-accent">.</span></a><button class="mobile-menu" id="bookMenuToggle" aria-label="Open navigation" aria-expanded="false">☰</button><div class="navlinks" id="bookNavlinks">
+<div class="nav-item"><a href="index.html#home">HOME</a><div class="nav-panel"><div class="nav-panel-inner"><span class="nav-panel-kicker">WELCOME</span><a href="index.html#home">Portfolio overview</a><a href="index.html#roadmap">Professional experience</a><a href="index.html#projects">Featured work</a></div></div></div>
+<div class="nav-item"><a href="index.html#roadmap">EXPERIENCE</a><div class="nav-panel"><div class="nav-panel-inner"><span class="nav-panel-kicker">EXPERIENCE</span><a href="index.html#roadmap">Career timeline</a><a href="index.html#skills">Core BA capabilities</a><a href="index.html#projects">Industry projects</a></div></div></div>
+<div class="nav-item"><a href="index.html#projects">PROJECTS</a><div class="nav-panel"><div class="nav-panel-inner"><span class="nav-panel-kicker">SELECTED WORK</span><a href="index.html#projects">Project case studies</a><a href="#responsibilities">BA responsibilities</a><a href="index.html#assistant">Discuss my experience</a></div></div></div>
+<div class="nav-item"><a href="index.html#skills">PROCESS</a><div class="nav-panel"><div class="nav-panel-inner"><span class="nav-panel-kicker">HOW I WORK</span><a href="index.html#skills">Business analysis approach</a><a href="#delivery-flow">Delivery workflow</a><a href="#responsibilities">Core responsibilities</a></div></div></div>
+<div class="nav-item"><a href="#top" aria-current="page">BA BOOK</a><div class="nav-panel"><div class="nav-panel-inner"><span class="nav-panel-kicker">BA BOOK</span><a href="#top">Overview</a><a href="#responsibilities">Core responsibilities</a><a href="#delivery-flow">Delivery flow</a></div></div></div>
+<div class="nav-item"><a href="index.html#assistant">ASSISTANT</a><div class="nav-panel"><div class="nav-panel-inner"><span class="nav-panel-kicker">BA ASSISTANT</span><a href="index.html#assistant">Ask a BA question</a><a href="index.html#assistant">Explore BA topics</a><a href="index.html#contact">Contact Anshu</a></div></div></div>
+</div><a class="nav-cta" href="index.html#contact">CONTACT ↗</a></nav></header>
   <main>
     <section class="hero" id="top"><div class="wrap">
       <div class="eyebrow">BUSINESS ANALYSIS · DELIVERY WORK</div>
@@ -257,6 +290,13 @@ document.getElementById('year').textContent=new Date().getFullYear();
   });
  }
 })();
+
+// Hover opens category panels on desktop; Escape closes the active panel.
+document.querySelectorAll('.nav-item').forEach(item=>{
+ item.addEventListener('keydown',event=>{
+  if(event.key==='Escape'){item.querySelector('.nav-panel')?.blur();item.querySelector('a')?.focus();}
+ });
+});
 </script>
 </body>
 </html>
