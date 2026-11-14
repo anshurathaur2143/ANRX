@@ -213,6 +213,73 @@ a:hover{text-shadow:none}
  .navlinks .nav-item>a:after{display:none!important}
 }
 @media(prefers-reduced-motion:reduce){.nav-panel,.nav-panel-inner>a,.navlinks .nav-item>a{transition:none!important}}
+
+/* Precision pass: dropdown links hug their text; no inherited underline can spill across the menu. */
+.nav-panel-inner{grid-template-columns:1.2fr repeat(3,minmax(130px,1fr))}
+.navlinks .nav-panel .nav-panel-inner>a,
+.navlinks .nav-panel .nav-panel-inner>a:hover{
+ display:inline-flex!important;
+ justify-self:start!important;
+ align-self:start!important;
+ width:max-content!important;
+ max-width:100%!important;
+ padding:0!important;
+ margin:0!important;
+ text-decoration:none!important;
+ text-shadow:none!important;
+ border:0!important;
+ background:none!important;
+ box-shadow:none!important;
+}
+.navlinks .nav-panel .nav-panel-inner>a:before,
+.navlinks .nav-panel .nav-panel-inner>a:after,
+.navlinks .nav-panel .nav-panel-inner>a:hover:before,
+.navlinks .nav-panel .nav-panel-inner>a:hover:after{
+ content:none!important;
+ display:none!important;
+ width:0!important;
+}
+.navlinks .nav-panel .nav-panel-inner>a:hover{transform:translateX(2px);color:#0071e3!important}
+@media(max-width:850px){.nav-panel-inner>a{width:auto!important}}
+
+/* ANRX insight dashboard: restrained midnight, slate and precise blue accents. */
+.hero-visual .orb{
+ background:radial-gradient(circle at 35% 30%,#426b9c 0,#183b62 24%,#101d30 52%,#090d15 74%)!important;
+ filter:drop-shadow(0 0 58px rgba(46,116,190,.18))!important;
+}
+.hero-visual .orb:before{border-color:rgba(104,166,225,.3)!important}
+.hero-dashboard{
+ border-color:rgba(148,180,214,.2)!important;
+ background:
+  linear-gradient(145deg,rgba(37,91,145,.24),rgba(12,19,30,.98) 48%),
+  repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(220,235,255,.035) 40px),
+  repeating-linear-gradient(90deg,transparent,transparent 39px,rgba(220,235,255,.035) 40px)!important;
+ box-shadow:0 25px 70px rgba(5,17,33,.42)!important;
+}
+.dash-top,.dash-footer{color:#9aabc0!important}
+.dash-live{color:#78b8f4!important}
+.dash-live::first-letter{color:#78b8f4}
+.dash-title{color:#f5f8fc!important}
+.dash-metrics div{
+ background:rgba(22,36,54,.82)!important;
+ border-color:rgba(150,184,220,.17)!important;
+}
+.dash-metrics b{color:#f4f8ff!important;letter-spacing:-.045em}
+.dash-metrics small{color:#9aabc0!important}
+.dash-chart{border-bottom-color:rgba(180,205,232,.22)!important}
+.dash-chart span{
+ background:linear-gradient(0deg,#24578b,#78b8f4)!important;
+ opacity:.88!important;
+}
+.hero-dashboard:hover{
+ box-shadow:0 28px 65px rgba(32,105,174,.2)!important;
+}
+@media(max-width:560px){
+ .hero-dashboard{transform:none!important}
+ .dash-top,.dash-footer{letter-spacing:.08em}
+ .dash-metrics{gap:6px}
+ .dash-metrics div{padding:10px 8px}
+}
 </style>
 </head>
 <body data-theme="light">
