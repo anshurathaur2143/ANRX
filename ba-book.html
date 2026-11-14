@@ -104,31 +104,68 @@ a:focus-visible{outline:3px solid rgba(0,113,227,.4);outline-offset:4px;border-r
 @media(prefers-reduced-motion:reduce){.hero:after,.hero:before,.marquee-track{animation:none!important}.motion-marquee{overflow:auto}.card,.card:after,.card .number,.hero-stats span,.workflow div{transition:none!important}}
 
 
-/* Visual refinement: preserve motion, quiet the palette and text hover */
-:root{--red:#9b7771;--ease:cubic-bezier(.2,.75,.25,1)}
-body:before{background:radial-gradient(ellipse at 82% 7%,rgba(120,112,105,.055),transparent 30%),radial-gradient(ellipse at 10% 42%,rgba(120,112,105,.025),transparent 32%)!important}
-.hero:after{background:radial-gradient(circle,rgba(150,137,128,.10),rgba(150,137,128,.025) 48%,transparent 70%)!important}
-.hero:before{border-color:rgba(120,112,105,.13)!important}
-.eyebrow,.number,.tag,.accent,.brand span{color:#8a7771!important}
-.card:before{background:linear-gradient(180deg,#a99b94,transparent)!important}
-.card:hover{border-color:rgba(100,91,85,.22)!important;box-shadow:0 20px 42px rgba(20,20,20,.065)!important}
-.card:after{background:radial-gradient(circle at var(--spot-x,50%) var(--spot-y,50%),rgba(130,120,112,.075),transparent 48%)!important}
-.number{border-color:rgba(130,112,103,.20)!important;background:rgba(130,112,103,.045)!important}
-.workflow:before{background:linear-gradient(90deg,rgba(130,120,112,.08),rgba(130,120,112,.28),rgba(130,120,112,.08))!important}
-.workflow:after{background:linear-gradient(90deg,#9b8c84,#b9aaa2)!important}
-.workflow div:before{background:#9b8c84!important;box-shadow:0 0 0 5px rgba(130,120,112,.08)!important}
-.workflow div.is-active{border-color:rgba(130,120,112,.30)!important;box-shadow:0 15px 34px rgba(30,30,30,.06)!important}
-.workflow div.is-active:before{box-shadow:0 0 0 8px rgba(130,120,112,.09)!important}
-.workflow div.is-active b{color:#383638!important}
-.motion-progress{background:linear-gradient(90deg,#8d817a,#b6aaa3)!important;box-shadow:none!important}
-.marquee-item:before{background:#9b8c84!important;box-shadow:0 0 0 5px rgba(130,120,112,.075)!important}
-.hero-stats span:hover{border-color:rgba(100,91,85,.22)!important;box-shadow:0 12px 28px rgba(20,20,20,.055)!important}
+/* ANRX homepage-matched Apple palette: ink, white and confident blue.
+   Preserve the motion system; remove the muted taupe/red treatment. */
+:root{
+  --bg:#ffffff;--panel:#f5f5f7;--surface:#f5f5f7;--line:rgba(29,29,31,.10);
+  --muted:#6e6e73;--text:#1d1d1f;--red:#0071e3;
+  --ease:cubic-bezier(.2,.75,.25,1);--spring:cubic-bezier(.2,1.2,.3,1)
+}
+body{background:#fff;color:#1d1d1f}
+body:before{background:radial-gradient(ellipse at 82% 7%,rgba(0,113,227,.09),transparent 32%),radial-gradient(ellipse at 8% 45%,rgba(0,113,227,.035),transparent 30%)}
+.topbar{background:rgba(255,255,255,.84);border-bottom:1px solid rgba(29,29,31,.09);backdrop-filter:saturate(180%) blur(20px)}
+.topbar.scrolled{background:rgba(255,255,255,.94);box-shadow:0 3px 18px rgba(0,0,0,.045)}
+.brand,.nav a{color:#1d1d1f}
+.nav a{transition:color .25s ease,opacity .25s ease}
+.nav a:hover{color:#0071e3}
+.hero{background:transparent}
+.hero:after{background:radial-gradient(circle,rgba(0,113,227,.13),rgba(0,113,227,.035) 48%,transparent 70%)}
+.hero:before{border-color:rgba(0,113,227,.20)}
+.eyebrow,.number,.tag,.accent,.brand span{color:#0071e3}
+.hero h1,.section-head h2,.card h3,.workflow b{color:#1d1d1f}
+.hero .intro,.section-head p,.card p,.card ul,.workflow small{color:#6e6e73}
+.hero-stats span{border-color:#e5e5ea;background:rgba(255,255,255,.88);color:#424245;transition:transform .45s var(--spring),box-shadow .3s ease,border-color .3s ease}
+.hero-stats span:hover{transform:translateY(-3px);border-color:rgba(0,113,227,.3);box-shadow:0 10px 26px rgba(0,113,227,.08)}
+.motion-marquee{background:#f5f5f7;border-color:#e5e5ea}
+.motion-marquee:before{background:linear-gradient(90deg,#f5f5f7,transparent)}
+.motion-marquee:after{background:linear-gradient(270deg,#f5f5f7,transparent)}
+.marquee-item{color:#6e6e73}
+.marquee-item b{color:#1d1d1f}
+.marquee-item:before{background:#0071e3;box-shadow:0 0 0 5px rgba(0,113,227,.10)}
+.card{background:#f5f5f7;border:1px solid rgba(29,29,31,.055);box-shadow:0 5px 20px rgba(0,0,0,.025);transition:transform .5s var(--spring),box-shadow .4s ease,border-color .3s ease}
+.card:before{background:linear-gradient(180deg,#0071e3,transparent)}
+.card:hover{transform:translateY(-5px);border-color:rgba(0,113,227,.2);box-shadow:0 18px 42px rgba(0,0,0,.075)}
+.card:after{background:radial-gradient(circle at var(--spot-x,50%) var(--spot-y,50%),rgba(0,113,227,.10),transparent 48%)}
+.number{border-color:rgba(0,113,227,.18);background:#e8f2ff}
+.deliverables span{border-color:#e5e5ea;background:#fff;color:#424245}
+.workflow:before{background:linear-gradient(90deg,rgba(0,113,227,.10),rgba(0,113,227,.42),rgba(0,113,227,.10))}
+.workflow:after{background:linear-gradient(90deg,#0071e3,#69b8ff)}
+.workflow div{background:#f5f5f7;border-color:rgba(29,29,31,.07);box-shadow:0 5px 18px rgba(0,0,0,.025)}
+.workflow div:before{background:#0071e3;box-shadow:0 0 0 5px rgba(0,113,227,.10)}
+.workflow div.is-active{transform:translateY(-6px);border-color:rgba(0,113,227,.36);box-shadow:0 15px 34px rgba(0,113,227,.10)}
+.workflow div.is-active:before{box-shadow:0 0 0 8px rgba(0,113,227,.12)}
+.workflow div.is-active b{color:#0071e3}
+.motion-progress{height:3px;background:linear-gradient(90deg,#0071e3,#69b8ff);box-shadow:0 0 12px rgba(0,113,227,.18)}
+.footer{background:#fff;border-top-color:#e5e5ea;color:#6e6e73}
+.footer a{color:#1d1d1f}
+.footer a:hover{color:#0071e3}
 :where(h1,h2,h3,p,a,span,strong,small,li):hover{color:inherit;text-shadow:none}
-a:hover{color:#55555b;text-shadow:none}
-.footer a:hover{color:#55555b}
-.nav a:last-child:hover{color:#171719}
-@media(hover:hover) and (pointer:fine){.card:hover{transform:translateY(-4px) perspective(1100px) rotateX(.4deg)}}
-
+a:hover{text-shadow:none}
+@media(hover:hover) and (pointer:fine){.card:hover{transform:translateY(-5px)}}
+@media(max-width:760px){
+ .hero:after{width:260px;height:260px;right:-100px;top:0}
+ .hero:before{width:130px;height:130px;right:4%;top:18%}
+ .motion-marquee{padding:14px 0}
+ .marquee-track{gap:24px;animation-duration:27s}
+ .marquee-item{font-size:.72rem}
+ .workflow:after{display:none}
+ .card{transform:none!important}
+}
+@media(prefers-reduced-motion:reduce){
+ .hero:after,.hero:before,.marquee-track{animation:none!important}
+ .motion-marquee{overflow:auto}
+ .card,.card:after,.card .number,.hero-stats span,.workflow div{transition:none!important}
+}
 </style>
 </head>
 <body data-theme="light">
