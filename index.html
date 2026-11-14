@@ -14,7 +14,33 @@
   <meta name="twitter:title" content="Anshu Rathaur | Business Analyst Portfolio">
   <meta name="twitter:description" content="Business Analyst with 4+ years of experience in requirements, stakeholder management, process mapping, and UAT.">
   <title>Anshu Rathaur | Business Analyst — Requirements, Delivery & UAT</title>
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Anshu Rathaur","jobTitle":"Business Analyst","email":"mailto:ianshurathaur@gmail.com","url":"https://anrx.vercel.app/","sameAs":["https://www.linkedin.com/in/ianshurathaur/"],"knowsAbout":["Requirements elicitation","Stakeholder management","Business process analysis","User acceptance testing","Healthcare","HRMS","E-commerce","eLearning"]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Anshu Rathaur","jobTitle":"Business Analyst","email":"mailto:ianshurathaur@gmail.com","url":"https://anrx.vercel.app/","sameAs":["https://www.linkedin.com/in/ianshurathaur/"],"knowsAbout":["Requirements elicitation","Stakeholder management","Business process analysis","User acceptance testing","Healthcare","HRMS","E-commerce","eLearning"]}
+/* Zomato-inspired, lightweight motion interactions for ANRX. */
+(function(){
+ const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+ const progress=document.createElement('div');progress.className='motion-progress';progress.setAttribute('aria-hidden','true');document.body.appendChild(progress);
+ let ticking=false;
+ function updateProgress(){const max=document.documentElement.scrollHeight-window.innerHeight;progress.style.width=(max>0?(window.scrollY/max)*100:0)+'%';ticking=false}
+ window.addEventListener('scroll',()=>{if(!ticking){requestAnimationFrame(updateProgress);ticking=true}},{passive:true});updateProgress();
+ const track=document.querySelector('.ticker-track');
+ if(track&&!reduce&&!track.dataset.looped){[...track.children].forEach(item=>{const clone=item.cloneNode(true);clone.setAttribute('aria-hidden','true');track.appendChild(clone)});track.dataset.looped='true'}
+ const steps=[...document.querySelectorAll('.process-item')];
+ if(steps.length&&'IntersectionObserver'in window){
+  const stepObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){steps.forEach(step=>step.classList.toggle('is-active',step===entry.target))}}),{rootMargin:'-35% 0px -45% 0px',threshold:0});
+  steps.forEach(step=>stepObserver.observe(step));
+ }
+ if(!reduce&&window.matchMedia('(hover:hover)').matches){
+  document.querySelectorAll('.project,.metric,.timeline-card').forEach(card=>{
+   card.addEventListener('pointermove',event=>{
+    const r=card.getBoundingClientRect(),x=(event.clientX-r.left)/r.width-.5,y=(event.clientY-r.top)/r.height-.5;
+    card.style.setProperty('--pointer-x',(x*2).toFixed(2));card.style.setProperty('--pointer-y',(y*2).toFixed(2));
+   });
+   card.addEventListener('pointerleave',()=>{card.style.removeProperty('--pointer-x');card.style.removeProperty('--pointer-y')});
+  });
+ }
+})();
+
+</script>
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
@@ -238,6 +264,45 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
  .tool-grid{grid-template-columns:1fr}.ticker-track{justify-content:flex-start;padding-left:16px}
 }
 @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}*,*:before,*:after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+
+
+/* Zomato-inspired motion language — adapted for ANRX, not copied assets. */
+:root{--motion-ease:cubic-bezier(.2,.75,.25,1);--motion-spring:cubic-bezier(.2,1.35,.4,1)}
+html{scroll-behavior:smooth}
+.motion-progress{position:fixed;inset:0 auto auto 0;height:3px;width:0;background:linear-gradient(90deg,#ef4f5f,#ff9a70);z-index:1000;box-shadow:0 0 12px rgba(239,79,95,.35);transform-origin:left}
+.hero-dashboard{animation:dashboard-float 7s ease-in-out infinite;will-change:transform}
+.hero-content .eyebrow{animation:eyebrow-in .7s var(--motion-ease) both}
+.hero-content h1{animation:headline-in .9s .08s var(--motion-ease) both}
+.hero-copy{animation:copy-in .8s .2s var(--motion-ease) both}
+.hero-actions .btn{position:relative;overflow:hidden}
+.hero-actions .btn:after{content:"";position:absolute;inset:-50% auto -50% -35%;width:25%;background:rgba(255,255,255,.35);transform:translateX(-180%) skewX(-22deg);transition:transform .65s var(--motion-ease)}
+.hero-actions .btn:hover:after{transform:translateX(650%) skewX(-22deg)}
+.ticker{overflow:hidden}
+.ticker-track{width:max-content;justify-content:flex-start;gap:42px;padding-inline:22px;animation:ticker-drift 32s linear infinite}
+.ticker:hover .ticker-track{animation-play-state:paused}
+.metric,.project,.timeline-card,.process-item{transform:translateZ(0);transition:transform .5s var(--motion-spring),box-shadow .45s ease,border-color .35s ease}
+.metric:hover,.project:hover,.timeline-card:hover,.process-item:hover{transform:translateY(-7px) scale(1.012)}
+.project-image img{transition:transform .85s var(--motion-ease),filter .6s ease}
+.project:hover .project-image img{transform:scale(1.075);filter:saturate(1.12)}
+.project-index{transition:transform .35s var(--motion-spring),background .3s ease}
+.project:hover .project-index{transform:translateY(3px) rotate(-3deg);background:var(--accent)}
+.process-item.is-active{border-color:rgba(239,79,95,.65);box-shadow:0 12px 35px rgba(239,79,95,.09);background:linear-gradient(100deg,rgba(239,79,95,.07),var(--panel))}
+.process-item.is-active .process-num{transform:scale(1.12);color:var(--accent)}
+.process-num{display:inline-block;transition:transform .35s var(--motion-spring),color .3s ease}
+.float-card{animation:float-card 6s ease-in-out infinite}
+.float-b{animation-delay:-2.4s}
+.reveal{transition:opacity .8s var(--motion-ease),transform .8s var(--motion-ease),filter .8s var(--motion-ease);filter:blur(3px)}
+.reveal.visible{filter:blur(0)}
+.nav-cta,.btn,.quick-prompts button{transition:transform .35s var(--motion-spring),box-shadow .3s ease,background .25s ease}
+.nav-cta:hover,.btn:hover{transform:translateY(-3px) scale(1.025)}
+@keyframes ticker-drift{to{transform:translateX(-50%)}}
+@keyframes dashboard-float{0%,100%{transform:perspective(1000px) rotateY(-5deg) translateY(0)}50%{transform:perspective(1000px) rotateY(-2deg) translateY(-10px)}}
+@keyframes float-card{0%,100%{translate:0 0}50%{translate:0 -9px}}
+@keyframes headline-in{from{opacity:0;transform:translateY(30px);clip-path:inset(0 0 100% 0)}to{opacity:1;transform:translateY(0);clip-path:inset(0)}}
+@keyframes eyebrow-in{from{opacity:0;transform:translateX(-16px)}to{opacity:1;transform:translateX(0)}}
+@keyframes copy-in{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:700px){.hero-dashboard{animation:dashboard-float 8s ease-in-out infinite}.ticker-track{gap:28px}.reveal{filter:none}}
+@media(prefers-reduced-motion:reduce){.motion-progress{display:none}.ticker-track{animation:none!important}.hero-dashboard,.float-card,.hero-content .eyebrow,.hero-content h1,.hero-copy{animation:none!important}.reveal{filter:none;transition:none!important}.metric,.project,.timeline-card,.process-item,.btn,.nav-cta{transition:none!important}}
 
 </style>
 </head>
