@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#09090d">
+  <meta name="theme-color" content="#ffffff">
   <meta name="description" content="Anshu Rathaur's BA book: requirement gathering and analysis, stakeholder management, documentation, process mapping, and UAT coordination.">
   <title>BA Book | Anshu Rathaur</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -45,9 +45,34 @@ a,button{transition:color .2s ease,background-color .2s ease,border-color .2s ea
 a:hover{color:#e98b83}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
 
+/* Shared ANRX light design: Apple-inspired clarity + Zomato-inspired motion */
+:root{color-scheme:light;--bg:#f7f7f5;--panel:#fff;--line:rgba(24,24,24,.10);--muted:#707078;--text:#171719;--red:#e6535d;--max:1120px;--ease:cubic-bezier(.2,.75,.25,1);--spring:cubic-bezier(.2,1.25,.4,1)}
+html{scroll-behavior:smooth;scroll-padding-top:90px}body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif;line-height:1.68;color-scheme:light}
+body:before{z-index:0;background:radial-gradient(ellipse at 82% 7%,rgba(230,83,93,.10),transparent 28%),radial-gradient(ellipse at 10% 42%,rgba(0,113,227,.045),transparent 30%);pointer-events:none}body>*{position:relative}
+.wrap{width:min(var(--max),calc(100% - 48px))}.topbar{background:rgba(255,255,255,.8);backdrop-filter:blur(22px) saturate(180%);border-bottom:1px solid rgba(0,0,0,.07);transition:box-shadow .3s ease,background .3s ease}.topbar.scrolled{box-shadow:0 8px 30px rgba(0,0,0,.055);background:rgba(255,255,255,.94)}
+.nav{min-height:68px}.brand{font-size:.96rem;letter-spacing:-.045em}.brand span{color:var(--red)}.nav a:last-child{border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:10px 17px;background:#fff;font-size:.8rem;transition:transform .35s var(--spring),box-shadow .3s ease}.nav a:last-child:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.07)}
+.hero{padding:112px 0 76px;position:relative;overflow:hidden}.hero .wrap{position:relative;z-index:1}.eyebrow,.number,.tag{font:600 .7rem ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.13em;color:var(--red)}
+h1{font-size:clamp(3.6rem,9vw,7.4rem);line-height:.94;letter-spacing:-.085em;margin:22px 0 26px;font-weight:750}.accent{color:var(--red)}.intro{max-width:710px;color:#62626a;font-size:clamp(1.02rem,1.8vw,1.2rem);line-height:1.75}
+.hero-stats{gap:10px;margin-top:32px}.hero-stats span{border:1px solid rgba(0,0,0,.09);border-radius:999px;padding:9px 15px;background:rgba(255,255,255,.76);font-size:.78rem;color:#55555d}
+.section{padding:78px 0 92px}.section-head{max-width:780px;margin-bottom:34px}.section-head h2{font-size:clamp(2.2rem,5vw,3.7rem);line-height:1.04;letter-spacing:-.07em;font-weight:720;margin:14px 0}.section-head p{color:#707078;max-width:680px;font-size:1rem}
+.cards{gap:18px}.card{padding:30px;border:1px solid rgba(0,0,0,.085);border-radius:20px;background:rgba(255,255,255,.9);box-shadow:0 5px 20px rgba(0,0,0,.025);transition:transform .55s var(--spring),box-shadow .45s ease,border-color .35s ease}.card:before{content:"";position:absolute;inset:0 auto 0 0;width:3px;background:linear-gradient(180deg,#e6535d,transparent);opacity:0;transition:opacity .35s ease}.card:hover{transform:translateY(-8px) scale(1.008);border-color:rgba(230,83,93,.35);box-shadow:0 22px 50px rgba(20,20,20,.075)}.card:hover:before{opacity:1}
+.number{border:1px solid rgba(230,83,93,.22);border-radius:999px;padding:6px 10px;background:rgba(230,83,93,.055)}.card h3{font-size:1.45rem;letter-spacing:-.045em;margin:22px 0 12px}.card p{color:#65656d}.card ul{color:#55555e;padding-left:19px}.card li{margin:9px 0}
+.deliverables{gap:8px;margin-top:22px}.deliverables span{border:1px solid rgba(0,0,0,.085);border-radius:999px;padding:6px 10px;color:#595961;background:#fafafa;font-size:.72rem}
+.workflow{gap:12px;margin-top:28px;position:relative}.workflow:before{content:"";position:absolute;left:6%;right:6%;top:26px;height:1px;background:linear-gradient(90deg,rgba(230,83,93,.1),rgba(230,83,93,.55),rgba(230,83,93,.1))}
+.workflow div{position:relative;z-index:1;padding:20px 17px;border:1px solid rgba(0,0,0,.09);border-radius:15px;background:#fff;box-shadow:0 5px 18px rgba(0,0,0,.025);transition:transform .45s var(--spring),box-shadow .35s ease,border-color .3s ease}.workflow div:before{content:"";display:block;width:11px;height:11px;border-radius:50%;background:#e6535d;box-shadow:0 0 0 5px rgba(230,83,93,.10);margin-bottom:17px;transition:transform .35s var(--spring),box-shadow .35s ease}.workflow div.is-active{transform:translateY(-6px);border-color:rgba(230,83,93,.4);box-shadow:0 15px 34px rgba(230,83,93,.09)}.workflow div.is-active:before{transform:scale(1.25);box-shadow:0 0 0 8px rgba(230,83,93,.12)}.workflow b{font-size:.9rem;letter-spacing:-.02em}.workflow small{display:block;color:#777780;margin-top:5px}
+.footer{border-top:1px solid rgba(0,0,0,.08);padding:26px 0;color:#777780;font-size:.8rem;background:rgba(255,255,255,.55)}.footer a{color:#34343a}.footer a:hover{color:var(--red)}
+.motion-progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:50;background:linear-gradient(90deg,#e6535d,#ff9a78);box-shadow:0 0 12px rgba(230,83,93,.3);transform-origin:left}
+.reveal{opacity:0;transform:translateY(24px);filter:blur(2px);transition:opacity .8s var(--ease),transform .8s var(--ease),filter .8s var(--ease)}.reveal.visible{opacity:1;transform:translateY(0);filter:blur(0)}
+.hero .eyebrow{animation:baFade .7s var(--ease) both}.hero h1{animation:baRise .9s .08s var(--ease) both}.hero .intro{animation:baRise .85s .2s var(--ease) both}.hero-stats{animation:baRise .8s .3s var(--ease) both}
+@keyframes baRise{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}@keyframes baFade{from{opacity:0;letter-spacing:.22em}to{opacity:1;letter-spacing:.13em}}
+a:focus-visible{outline:3px solid rgba(0,113,227,.4);outline-offset:4px;border-radius:5px}
+@media(max-width:760px){.wrap{width:calc(100% - 36px)}.hero{padding:78px 0 54px}h1{font-size:clamp(3.35rem,15vw,5.4rem)}.section{padding:62px 0 70px}.cards{grid-template-columns:1fr;gap:14px}.card{padding:24px;border-radius:17px}.workflow{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.workflow:before{display:none}.workflow div{padding:16px}.hero-stats{gap:8px}.hero-stats span{font-size:.72rem}}
+@media(max-width:390px){.workflow{grid-template-columns:1fr}.nav{gap:10px}.brand{font-size:.85rem}.nav a:last-child{padding:9px 11px;font-size:.72rem}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{opacity:1;transform:none;filter:none;transition:none}.hero .eyebrow,.hero h1,.hero .intro,.hero-stats{animation:none}.card,.workflow div,.nav a:last-child{transition:none}}
+
 </style>
 </head>
-<body>
+<body data-theme="light">
   <header class="topbar"><nav class="nav wrap" aria-label="Main navigation"><a class="brand" href="index.html">ANRX <span>· ANSHU RATHAUR</span></a><a href="index.html">← Back to portfolio</a></nav></header>
   <main>
     <section class="hero"><div class="wrap">
@@ -68,6 +93,6 @@ a:hover{color:#e98b83}
     <section class="section" style="padding-top:0"><div class="wrap"><div class="section-head"><div class="eyebrow">DELIVERY FLOW</div><h2>How the work connects.</h2><p>Each step creates an input for the next step and keeps requirements traceable from discovery through acceptance.</p></div><div class="workflow"><div><b>01 · Discover</b><small>Goals, users, needs</small></div><div><b>02 · Analyze</b><small>Rules, gaps, scope</small></div><div><b>03 · Document</b><small>Stories, criteria, maps</small></div><div><b>04 · Validate</b><small>UAT, defects, sign-off</small></div></div></div></section>
   </main>
   <footer class="footer"><div class="wrap footer-inner"><span>© <span id="year"></span> Anshu Rathaur · Business Analyst</span><a href="index.html">Back to main portfolio ↑</a></div></footer>
-  <script>document.getElementById('year').textContent=new Date().getFullYear();</script>
+  <script>document.getElementById('year').textContent=new Date().getFullYear();(function(){const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;const bar=document.createElement('div');bar.className='motion-progress';bar.setAttribute('aria-hidden','true');document.body.appendChild(bar);let pending=false;function progress(){const max=document.documentElement.scrollHeight-innerHeight;bar.style.width=(max>0?scrollY/max*100:0)+'%';pending=false}addEventListener('scroll',()=>{if(!pending){requestAnimationFrame(progress);pending=true}},{passive:true});progress();const topbar=document.querySelector('.topbar');addEventListener('scroll',()=>topbar.classList.toggle('scrolled',scrollY>18),{passive:true});const targets=[...document.querySelectorAll('.section-head,.card,.workflow div')];if('IntersectionObserver'in window&&!reduce){const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}}),{threshold:.12});targets.forEach((el,i)=>{el.classList.add('reveal');el.style.transitionDelay=(i%4)*75+'ms';observer.observe(el)})}else targets.forEach(el=>el.classList.add('visible'));const steps=[...document.querySelectorAll('.workflow div')];if('IntersectionObserver'in window){const active=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting)steps.forEach(step=>step.classList.toggle('is-active',step===entry.target))}),{rootMargin:'-32% 0px -48% 0px',threshold:0});steps.forEach(step=>active.observe(step))}})();</script>
 </body>
 </html>
