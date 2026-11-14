@@ -40,6 +40,13 @@
  }
 })();
 
+
+// Hover opens category panels on desktop; Escape closes the active panel.
+document.querySelectorAll('.nav-item').forEach(item=>{
+ item.addEventListener('keydown',event=>{
+  if(event.key==='Escape'){item.querySelector('.nav-panel')?.blur();item.querySelector('a')?.focus();}
+ });
+});
 </script>
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -304,10 +311,43 @@ html{scroll-behavior:smooth}
 @media(max-width:700px){.hero-dashboard{animation:dashboard-float 8s ease-in-out infinite}.ticker-track{gap:28px}.reveal{filter:none}}
 @media(prefers-reduced-motion:reduce){.motion-progress{display:none}.ticker-track{animation:none!important}.hero-dashboard,.float-card,.hero-content .eyebrow,.hero-content h1,.hero-copy{animation:none!important}.reveal{filter:none;transition:none!important}.metric,.project,.timeline-card,.process-item,.btn,.nav-cta{transition:none!important}}
 
+
+/* Apple-inspired hover navigation: full-width category panels, no underline states. */
+.topbar{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.88);backdrop-filter:saturate(180%) blur(22px);-webkit-backdrop-filter:saturate(180%) blur(22px);overflow:visible}
+.nav{position:relative;z-index:101}
+.navlinks{align-self:stretch;gap:clamp(10px,1.55vw,22px)}
+.nav-item{height:100%;display:flex;align-items:center;position:static}
+.navlinks .nav-item>a{position:relative;display:flex;align-items:center;height:100%;padding:0 1px;color:#424245!important;text-decoration:none!important;text-shadow:none!important;transition:opacity .2s ease}
+.navlinks .nav-item>a:before,.navlinks .nav-item>a:after{display:none!important;content:none!important}
+.navlinks .nav-item:hover>a,.navlinks .nav-item:focus-within>a{color:#1d1d1f!important;opacity:.62}
+.navlinks .nav-item>a[aria-current],.navlinks .nav-item>a[aria-current="page"],.navlinks .nav-item>a[aria-current="location"]{color:#424245!important}
+.nav-panel{position:absolute;left:0;right:0;top:100%;z-index:120;background:rgba(255,255,255,.97);backdrop-filter:saturate(180%) blur(26px);-webkit-backdrop-filter:saturate(180%) blur(26px);border-top:1px solid rgba(29,29,31,.055);border-bottom:1px solid rgba(29,29,31,.10);box-shadow:0 24px 44px rgba(0,0,0,.09);opacity:0;visibility:hidden;pointer-events:none;transform:translateY(-8px);transition:opacity .22s ease,transform .28s cubic-bezier(.2,.75,.25,1),visibility .22s}
+.nav-item:hover .nav-panel,.nav-item:focus-within .nav-panel{opacity:1;visibility:visible;pointer-events:auto;transform:translateY(0)}
+.nav-panel-inner{width:min(1060px,calc(100% - 64px));margin:0 auto;padding:30px 0 34px;display:grid;grid-template-columns:1.2fr repeat(3,minmax(130px,1fr));align-items:start;gap:22px}
+.nav-panel-kicker{font-size:.65rem;font-weight:600;letter-spacing:.11em;color:#86868b;padding-top:3px}
+.nav-panel-inner>a{font-size:1.02rem;line-height:1.35;font-weight:600;letter-spacing:-.025em;color:#1d1d1f;text-decoration:none;transition:color .18s ease,transform .18s ease}
+.nav-panel-inner>a:hover{color:#0071e3;transform:translateX(2px)}
+.navlinks .nav-item>a:hover:after,.navlinks .nav-item>a[aria-current]:after{display:none!important;content:none!important}
+@media(max-width:850px){
+ .topbar{overflow:visible}
+ .navlinks{align-items:stretch}
+ .nav-item{height:auto;display:block;border-bottom:1px solid #f0f0f2}
+ .navlinks .nav-item>a{height:auto;padding:13px 2px;font-size:.86rem}
+ .nav-panel{display:none!important}
+ .navlinks .nav-item>a:after{display:none!important}
+}
+@media(prefers-reduced-motion:reduce){.nav-panel,.nav-panel-inner>a,.navlinks .nav-item>a{transition:none!important}}
 </style>
 </head>
 <body data-theme="light">
-<header class="topbar"><nav class="nav wrap" aria-label="Main navigation"><a class="brand" href="#home"><span class="brand-mark">AR</span> ANSHU RATHAUR<span class="accent">.</span></a><button class="mobile-menu" id="menuToggle" aria-label="Open navigation" aria-expanded="false">☰</button><div class="navlinks" id="navlinks"><a href="#home">HOME</a><a href="#roadmap">EXPERIENCE</a><a href="#projects">PROJECTS</a><a href="#skills">PROCESS</a><a class="external-nav" href="ba-book.html" aria-label="BA Book page">BA BOOK</a><a href="#assistant">ASSISTANT</a></div><div class="nav-tools"><a class="nav-cta" href="#contact">CONTACT ↗</a></div></nav></header>
+<header class="topbar"><nav class="nav wrap" aria-label="Main navigation"><a class="brand" href="#home"><span class="brand-mark">AR</span> ANSHU RATHAUR<span class="accent">.</span></a><button class="mobile-menu" id="menuToggle" aria-label="Open navigation" aria-expanded="false">☰</button><div class="navlinks" id="navlinks">
+<div class="nav-item"><a href="#home">HOME</a><div class="nav-panel"><div class="nav-panel-inner"><span class="nav-panel-kicker">WELCOME</span><a href="#home">Portfolio overview</a><a href="#roadmap">Professional experience</a><a href="#projects">Featured work</a></div></div></div>
+<div class="nav-item"><a href="#roadmap">EXPERIENCE</a><div class="nav-panel"><div class="nav-panel-inner"><span class="nav-panel-kicker">EXPERIENCE</span><a href="#roadmap">Career timeline</a><a href="#skills">Core BA capabilities</a><a href="#projects">Industry projects</a></div></div></div>
+<div class="nav-item"><a href="#projects">PROJECTS</a><div class="nav-panel"><div class="nav-panel-inner"><span class="nav-panel-kicker">SELECTED WORK</span><a href="#projects">Project case studies</a><a href="ba-book.html">BA delivery book</a><a href="#assistant">Discuss my experience</a></div></div></div>
+<div class="nav-item"><a href="#skills">PROCESS</a><div class="nav-panel"><div class="nav-panel-inner"><span class="nav-panel-kicker">HOW I WORK</span><a href="#skills">Business analysis approach</a><a href="#roadmap">Requirements to delivery</a><a href="ba-book.html#delivery-flow">Delivery workflow</a></div></div></div>
+<div class="nav-item"><a class="external-nav" href="ba-book.html">BA BOOK</a><div class="nav-panel"><div class="nav-panel-inner"><span class="nav-panel-kicker">BA BOOK</span><a href="ba-book.html#top">Overview</a><a href="ba-book.html#responsibilities">Core responsibilities</a><a href="ba-book.html#delivery-flow">Delivery flow</a></div></div></div>
+<div class="nav-item"><a href="#assistant">ASSISTANT</a><div class="nav-panel"><div class="nav-panel-inner"><span class="nav-panel-kicker">BA ASSISTANT</span><a href="#assistant">Ask a BA question</a><a href="#assistant">Explore BA topics</a><a href="#contact">Contact Anshu</a></div></div></div>
+</div><div class="nav-tools"><a class="nav-cta" href="#contact">CONTACT ↗</a></div></nav></header>
 <main>
 <section class="hero" id="home"><div class="wrap hero-grid"><div class="hero-content reveal"><div class="eyebrow">BUSINESS ANALYST · 4+ YEARS EXPERIENCE</div><h1>I turn stakeholder needs<br><span>into clear, testable delivery.</span></h1><p class="hero-copy">I’m <strong>Anshu Rathaur</strong>, a Business Analyst with 4+ years of experience across healthcare, e-commerce, automobile, and eLearning. I connect stakeholder needs to clear requirements, practical workflows, and testable delivery outcomes.</p><div class="hero-actions"><a class="btn btn-primary" href="#projects">Explore case studies <span>↘</span></a><a class="btn btn-secondary" href="#skills">How I work <span>↗</span></a></div><div class="proof-row"><div class="proof"><span class="proof-dot"></span><span><b>4+</b> years in BA</span></div><div class="proof"><span class="proof-dot"></span><span><b>20+</b> projects contributed to*</span></div><div class="proof"><span class="proof-dot"></span><span><b>12+</b> cross-functional team size*</span></div></div></div><div class="hero-visual reveal" aria-label="Abstract analytical portrait artwork"><div class="orb"></div><div class="hero-image hero-dashboard" role="img" aria-label="Abstract business analysis dashboard illustration"><div class="dash-top"><span>ANRX / INSIGHTS</span><span class="dash-live">● LIVE</span></div><div class="dash-title">From requirements<br>to outcomes.</div><div class="dash-metrics"><div><b>4+</b><small>YEARS</small></div><div><b>20+</b><small>PROJECTS</small></div><div><b>4</b><small>DOMAINS</small></div></div><div class="dash-chart"><span style="height:28%"></span><span style="height:43%"></span><span style="height:37%"></span><span style="height:62%"></span><span style="height:55%"></span><span style="height:82%"></span><span style="height:100%"></span></div><div class="dash-footer"><span>REQUIREMENTS</span><span>DELIVERY</span><span>VALIDATION</span></div></div><div class="float-card float-a"><small>Mindset / 01</small><strong>Clarity over complexity</strong></div><div class="float-card float-b"><small>Delivery mindset</small><strong>Structured. Consistent. Curious.</strong><div class="mini-bars"><i></i><i></i><i></i><i></i><i></i></div></div></div></div></section>
 <div class="ticker"><div class="ticker-track"><span>Requirement gathering &amp; analysis</span><span>Stakeholder management</span><span>Agile delivery</span><span>Data-informed decisions</span><span>Continuous improvement</span></div></div>
@@ -330,22 +370,8 @@ const contactForm=document.getElementById("contactForm");
 contactForm.addEventListener("submit",event=>{event.preventDefault();if(!contactForm.reportValidity())return;const name=document.getElementById("contactName").value.trim();const email=document.getElementById("contactEmail").value.trim();const message=document.getElementById("contactMessage").value.trim();const subject=encodeURIComponent("Portfolio enquiry from "+name);const body=encodeURIComponent("Name: "+name+"\nEmail: "+email+"\n\n"+message);window.location.href="mailto:ianshurathaur@gmail.com?subject="+subject+"&body="+body;});
 
 document.querySelectorAll('.process-expand').forEach(button=>button.addEventListener('click',()=>{const detail=document.getElementById(button.getAttribute('aria-controls'));const open=button.getAttribute('aria-expanded')!=='true';button.setAttribute('aria-expanded',String(open));detail.hidden=!open;button.querySelector('span').textContent=open?'−':'＋';button.firstChild.textContent=open?'Hide BA activities ':'View BA activities ';}));const menuToggle=document.getElementById('menuToggle'),navlinks=document.getElementById('navlinks');menuToggle.addEventListener('click',()=>{const open=navlinks.classList.toggle('open');menuToggle.setAttribute('aria-expanded',String(open));menuToggle.textContent=open?'×':'☰'});navlinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{navlinks.classList.remove('open');menuToggle.setAttribute('aria-expanded','false');menuToggle.textContent='☰'}));
-/* Keep the current in-page section visible in the navigation. */
-const sectionLinks=[...navlinks.querySelectorAll('a[href^="#"]')];
-const navSections=sectionLinks.map(link=>document.querySelector(link.getAttribute('href'))).filter(Boolean);
-if('IntersectionObserver' in window){
- const navObserver=new IntersectionObserver(entries=>{
-  entries.forEach(entry=>{
-   if(entry.isIntersecting){
-    sectionLinks.forEach(link=>{
-     const active=link.getAttribute('href')==='#'+entry.target.id;
-     if(active)link.setAttribute('aria-current','location');else link.removeAttribute('aria-current');
-    });
-   }
-  });
- },{rootMargin:'-22% 0px -62% 0px',threshold:0});
- navSections.forEach(section=>navObserver.observe(section));
-}if('IntersectionObserver'in window){const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}}),{threshold:.12});document.querySelectorAll('.reveal').forEach(el=>observer.observe(el))}else{document.querySelectorAll('.reveal').forEach(el=>el.classList.add('visible'))}
+/* Navigation intentionally has no scroll-linked active underline or duplicate active state. */
+if('IntersectionObserver'in window){const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}}),{threshold:.12});document.querySelectorAll('.reveal').forEach(el=>observer.observe(el))}else{document.querySelectorAll('.reveal').forEach(el=>el.classList.add('visible'))}
 
 /* UPGRADED: AI Assistant — vanilla JavaScript, offline rule-based knowledge base */
 const chatLog=document.getElementById('chatLog'),chatInput=document.getElementById('chatInput'),chatForm=document.getElementById('chatForm'),chatStatus=document.getElementById('chatStatus');
