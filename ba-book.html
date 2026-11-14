@@ -166,19 +166,40 @@ a:hover{text-shadow:none}
  .motion-marquee{overflow:auto}
  .card,.card:after,.card .number,.hero-stats span,.workflow div{transition:none!important}
 }
+
+/* Apple-inspired shared navigation: compact, calm, always easy to reach. */
+.nav{height:58px;gap:22px}
+.brand{display:flex;align-items:center;gap:9px;white-space:nowrap;font-size:.92rem;font-weight:700;letter-spacing:-.04em;color:#1d1d1f}
+.brand-mark{width:26px;height:26px;border-radius:8px;display:grid;place-items:center;background:#1d1d1f;color:#fff;font-size:.68rem;font-weight:700}
+.brand-accent{color:#0071e3}
+.navlinks{display:flex;align-items:center;justify-content:center;gap:clamp(12px,1.7vw,23px);flex:1}
+.navlinks a{font-size:.68rem;font-weight:500;letter-spacing:0;color:#424245;white-space:nowrap;transition:color .2s ease}
+.navlinks a:hover,.navlinks a[aria-current="page"]{color:#0071e3}
+.nav-cta{display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;border-radius:999px;background:#0071e3;color:#fff;padding:8px 15px;font-size:.72rem;font-weight:600;transition:background .2s ease,transform .25s ease}
+.nav-cta:hover{background:#0077ed;transform:translateY(-1px)}
+.mobile-menu{display:none;border:0;background:transparent;color:#1d1d1f;font-size:1.35rem;padding:5px;cursor:pointer}
+@media(max-width:850px){
+ .nav{height:56px;gap:12px}
+ .mobile-menu{display:block;margin-left:auto}
+ .navlinks{display:none;position:absolute;top:56px;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;padding:8px 24px 16px;background:rgba(255,255,255,.97);backdrop-filter:blur(22px);border-bottom:1px solid #e5e5ea;box-shadow:0 18px 30px rgba(0,0,0,.07)}
+ .navlinks.open{display:flex}
+ .navlinks a{font-size:.86rem;padding:13px 2px;border-bottom:1px solid #f0f0f2}
+ .nav-cta{font-size:.7rem;padding:8px 12px}
+}
+@media(max-width:390px){.brand{font-size:.82rem}.nav-cta{padding:7px 10px;font-size:.66rem}}
 </style>
 </head>
 <body data-theme="light">
-  <header class="topbar"><nav class="nav wrap" aria-label="Main navigation"><a class="brand" href="index.html">ANRX <span>· ANSHU RATHAUR</span></a><a href="index.html">← Back to portfolio</a></nav></header>
+  <header class="topbar"><nav class="nav wrap" aria-label="Main navigation"><a class="brand" href="index.html#home"><span class="brand-mark">AR</span> ANSHU RATHAUR<span class="brand-accent">.</span></a><button class="mobile-menu" id="bookMenuToggle" aria-label="Open navigation" aria-expanded="false">☰</button><div class="navlinks" id="bookNavlinks"><a href="index.html#home">HOME</a><a href="index.html#roadmap">EXPERIENCE</a><a href="index.html#projects">PROJECTS</a><a href="index.html#skills">PROCESS</a><a href="#top" aria-current="page">BA BOOK</a><a href="index.html#assistant">ASSISTANT</a></div><a class="nav-cta" href="index.html#contact">CONTACT ↗</a></nav></header>
   <main>
-    <section class="hero"><div class="wrap">
+    <section class="hero" id="top"><div class="wrap">
       <div class="eyebrow">BUSINESS ANALYSIS · DELIVERY WORK</div>
       <h1>BA book.<br><span class="accent">From needs to clarity.</span></h1>
       <p class="intro">A practical overview of my Business Analyst work: understanding business needs, aligning stakeholders, documenting clear requirements, mapping processes, and coordinating validation with business users and delivery teams.</p>
       <div class="hero-stats"><span>4+ years of BA experience</span><span>Healthcare · E-commerce · HRMS · eLearning</span><span>Requirements through UAT</span></div>
     </div></section>
     <div class="motion-marquee" aria-label="Business analysis capabilities"><div class="marquee-track" aria-hidden="true"><span class="marquee-item"><b>Discover</b> business needs</span><span class="marquee-item"><b>Analyze</b> workflows</span><span class="marquee-item"><b>Document</b> requirements</span><span class="marquee-item"><b>Collaborate</b> with stakeholders</span><span class="marquee-item"><b>Validate</b> through UAT</span><span class="marquee-item"><b>Improve</b> delivery</span><span class="marquee-item"><b>Discover</b> business needs</span><span class="marquee-item"><b>Analyze</b> workflows</span><span class="marquee-item"><b>Document</b> requirements</span><span class="marquee-item"><b>Collaborate</b> with stakeholders</span><span class="marquee-item"><b>Validate</b> through UAT</span><span class="marquee-item"><b>Improve</b> delivery</span></div></div>
-    <section class="section"><div class="wrap">
+    <section class="section" id="responsibilities"><div class="wrap">
       <div class="section-head"><div class="eyebrow">CORE RESPONSIBILITIES</div><h2>Four areas of <span class="accent">BA book.</span></h2><p>These are the core activities and artifacts I use to turn business goals into work that product, engineering, and QA teams can understand and validate.</p></div>
       <div class="cards">
         <article class="card"><span class="number">01 / DISCOVER</span><h3>Requirement gathering and analysis</h3><p>Understand the problem before defining the solution. Explore business goals, current workflows, pain points, rules, constraints, and expected outcomes.</p><ul><li>Conduct stakeholder interviews and requirement workshops.</li><li>Review existing documents and current-state processes.</li><li>Analyze gaps, dependencies, assumptions, and impact.</li><li>Clarify and prioritize functional and non-functional needs.</li></ul><div class="deliverables"><span>Requirement log</span><span>Gap analysis</span><span>Impact analysis</span></div></article>
@@ -187,11 +208,31 @@ a:hover{text-shadow:none}
         <article class="card"><span class="number">04 / VALIDATE</span><h3>Process mapping and UAT coordination</h3><p>Make workflows visible and coordinate business validation so the delivered solution matches agreed requirements.</p><ul><li>Map current-state and future-state workflows using BPMN or flowcharts.</li><li>Identify handoffs, decision points, exceptions, and bottlenecks.</li><li>Prepare UAT scenarios, test data, and expected results.</li><li>Track defects, coordinate retesting, and support sign-off.</li></ul><div class="deliverables"><span>Process maps</span><span>UAT scenarios</span><span>Defect log</span><span>Sign-off</span></div></article>
       </div>
     </div></section>
-    <section class="section" style="padding-top:0"><div class="wrap"><div class="section-head"><div class="eyebrow">DELIVERY FLOW</div><h2>How the work connects.</h2><p>Each step creates an input for the next step and keeps requirements traceable from discovery through acceptance.</p></div><div class="workflow"><div><b>01 · Discover</b><small>Goals, users, needs</small></div><div><b>02 · Analyze</b><small>Rules, gaps, scope</small></div><div><b>03 · Document</b><small>Stories, criteria, maps</small></div><div><b>04 · Validate</b><small>UAT, defects, sign-off</small></div></div></div></section>
+    <section class="section" id="delivery-flow" style="padding-top:0"><div class="wrap"><div class="section-head"><div class="eyebrow">DELIVERY FLOW</div><h2>How the work connects.</h2><p>Each step creates an input for the next step and keeps requirements traceable from discovery through acceptance.</p></div><div class="workflow"><div><b>01 · Discover</b><small>Goals, users, needs</small></div><div><b>02 · Analyze</b><small>Rules, gaps, scope</small></div><div><b>03 · Document</b><small>Stories, criteria, maps</small></div><div><b>04 · Validate</b><small>UAT, defects, sign-off</small></div></div></div></section>
   </main>
   <footer class="footer"><div class="wrap footer-inner"><span>© <span id="year"></span> Anshu Rathaur · Business Analyst</span><a href="index.html">Back to main portfolio ↑</a></div></footer>
   <script>
 document.getElementById('year').textContent=new Date().getFullYear();
+
+/* Accessible compact navigation for small screens. */
+(function(){
+ const toggle=document.getElementById('bookMenuToggle');
+ const links=document.getElementById('bookNavlinks');
+ if(!toggle||!links)return;
+ toggle.addEventListener('click',()=>{
+  const open=links.classList.toggle('open');
+  toggle.setAttribute('aria-expanded',String(open));
+  toggle.setAttribute('aria-label',open?'Close navigation':'Open navigation');
+  toggle.textContent=open?'×':'☰';
+ });
+ links.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{
+  links.classList.remove('open');
+  toggle.setAttribute('aria-expanded','false');
+  toggle.setAttribute('aria-label','Open navigation');
+  toggle.textContent='☰';
+ }));
+})();
+
 (function(){
  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
  const bar=document.createElement('div');bar.className='motion-progress';bar.setAttribute('aria-hidden','true');document.body.appendChild(bar);
