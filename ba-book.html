@@ -70,6 +70,39 @@ a:focus-visible{outline:3px solid rgba(0,113,227,.4);outline-offset:4px;border-r
 @media(max-width:390px){.workflow{grid-template-columns:1fr}.nav{gap:10px}.brand{font-size:.85rem}.nav a:last-child{padding:9px 11px;font-size:.72rem}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{opacity:1;transform:none;filter:none;transition:none}.hero .eyebrow,.hero h1,.hero .intro,.hero-stats{animation:none}.card,.workflow div,.nav a:last-child{transition:none}}
 
+
+/* More expressive Zomato-inspired motion layer */
+.hero{isolation:isolate}
+.hero:after{content:"";position:absolute;z-index:-1;width:440px;height:440px;right:-110px;top:10px;border-radius:50%;background:radial-gradient(circle,rgba(230,83,93,.13),rgba(230,83,93,.035) 48%,transparent 70%);animation:hero-orbit 9s ease-in-out infinite;pointer-events:none}
+.hero:before{content:"";position:absolute;z-index:-1;width:210px;height:210px;right:9%;top:20%;border:1px solid rgba(230,83,93,.13);border-radius:42%;transform:rotate(24deg);animation:shape-drift 14s linear infinite;pointer-events:none}
+.hero-stats span{transition:transform .45s cubic-bezier(.2,1.4,.4,1),box-shadow .3s ease,border-color .3s ease}
+.hero-stats span:hover{transform:translateY(-5px) scale(1.035);border-color:rgba(230,83,93,.4);box-shadow:0 12px 28px rgba(230,83,93,.09)}
+.motion-marquee{overflow:hidden;position:relative;border-top:1px solid rgba(0,0,0,.07);border-bottom:1px solid rgba(0,0,0,.07);background:rgba(255,255,255,.68);padding:18px 0}
+.motion-marquee:before,.motion-marquee:after{content:"";position:absolute;z-index:2;top:0;bottom:0;width:8%;pointer-events:none}
+.motion-marquee:before{left:0;background:linear-gradient(90deg,#f7f7f5,transparent)}
+.motion-marquee:after{right:0;background:linear-gradient(270deg,#f7f7f5,transparent)}
+.marquee-track{display:flex;width:max-content;align-items:center;gap:34px;animation:marquee-flow 34s linear infinite}
+.motion-marquee:hover .marquee-track{animation-play-state:paused}
+.marquee-item{display:flex;align-items:center;gap:12px;white-space:nowrap;color:#56565e;font-size:.78rem;font-weight:650;letter-spacing:.015em}
+.marquee-item:before{content:"";width:7px;height:7px;border-radius:50%;background:#e6535d;box-shadow:0 0 0 5px rgba(230,83,93,.09)}
+.marquee-item b{color:#171719;font-weight:750}
+.card{transform-style:preserve-3d;will-change:transform}
+.card:after{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;background:radial-gradient(circle at var(--spot-x,50%) var(--spot-y,50%),rgba(230,83,93,.11),transparent 48%);transition:opacity .35s ease}
+.card:hover:after{opacity:1}
+.card .number{transition:transform .45s cubic-bezier(.2,1.5,.4,1),background .3s ease}
+.card:hover .number{transform:translateY(-3px) scale(1.08);background:rgba(230,83,93,.11)}
+.workflow{--flow-progress:0%;padding-top:4px}
+.workflow:after{content:"";position:absolute;left:6%;top:30px;height:2px;width:var(--flow-progress);max-width:88%;background:linear-gradient(90deg,#e6535d,#ff9b82);z-index:2;transform-origin:left;transition:width .55s cubic-bezier(.2,.8,.2,1);pointer-events:none}
+.workflow div{overflow:hidden}
+.workflow div.is-active{transform:translateY(-8px) scale(1.025);border-color:rgba(230,83,93,.55);box-shadow:0 18px 38px rgba(230,83,93,.12)}
+.workflow div.is-active b{color:#d94e59}
+.motion-progress{height:4px}
+@keyframes marquee-flow{to{transform:translateX(-50%)}}
+@keyframes hero-orbit{0%,100%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(-22px,18px,0) scale(1.08)}}
+@keyframes shape-drift{to{transform:rotate(384deg) translateY(-8px)}}
+@media(max-width:760px){.hero:after{width:260px;height:260px;right:-100px;top:0}.hero:before{width:130px;height:130px;right:4%;top:18%}.motion-marquee{padding:14px 0}.marquee-track{gap:24px;animation-duration:27s}.marquee-item{font-size:.72rem}.workflow:after{display:none}.card{transform:none!important}}
+@media(prefers-reduced-motion:reduce){.hero:after,.hero:before,.marquee-track{animation:none!important}.motion-marquee{overflow:auto}.card,.card:after,.card .number,.hero-stats span,.workflow div{transition:none!important}}
+
 </style>
 </head>
 <body data-theme="light">
@@ -81,6 +114,7 @@ a:focus-visible{outline:3px solid rgba(0,113,227,.4);outline-offset:4px;border-r
       <p class="intro">A practical overview of my Business Analyst work: understanding business needs, aligning stakeholders, documenting clear requirements, mapping processes, and coordinating validation with business users and delivery teams.</p>
       <div class="hero-stats"><span>4+ years of BA experience</span><span>Healthcare · E-commerce · HRMS · eLearning</span><span>Requirements through UAT</span></div>
     </div></section>
+    <div class="motion-marquee" aria-label="Business analysis capabilities"><div class="marquee-track" aria-hidden="true"><span class="marquee-item"><b>Discover</b> business needs</span><span class="marquee-item"><b>Analyze</b> workflows</span><span class="marquee-item"><b>Document</b> requirements</span><span class="marquee-item"><b>Collaborate</b> with stakeholders</span><span class="marquee-item"><b>Validate</b> through UAT</span><span class="marquee-item"><b>Improve</b> delivery</span><span class="marquee-item"><b>Discover</b> business needs</span><span class="marquee-item"><b>Analyze</b> workflows</span><span class="marquee-item"><b>Document</b> requirements</span><span class="marquee-item"><b>Collaborate</b> with stakeholders</span><span class="marquee-item"><b>Validate</b> through UAT</span><span class="marquee-item"><b>Improve</b> delivery</span></div></div>
     <section class="section"><div class="wrap">
       <div class="section-head"><div class="eyebrow">CORE RESPONSIBILITIES</div><h2>Four areas of <span class="accent">BA book.</span></h2><p>These are the core activities and artifacts I use to turn business goals into work that product, engineering, and QA teams can understand and validate.</p></div>
       <div class="cards">
@@ -93,6 +127,32 @@ a:focus-visible{outline:3px solid rgba(0,113,227,.4);outline-offset:4px;border-r
     <section class="section" style="padding-top:0"><div class="wrap"><div class="section-head"><div class="eyebrow">DELIVERY FLOW</div><h2>How the work connects.</h2><p>Each step creates an input for the next step and keeps requirements traceable from discovery through acceptance.</p></div><div class="workflow"><div><b>01 · Discover</b><small>Goals, users, needs</small></div><div><b>02 · Analyze</b><small>Rules, gaps, scope</small></div><div><b>03 · Document</b><small>Stories, criteria, maps</small></div><div><b>04 · Validate</b><small>UAT, defects, sign-off</small></div></div></div></section>
   </main>
   <footer class="footer"><div class="wrap footer-inner"><span>© <span id="year"></span> Anshu Rathaur · Business Analyst</span><a href="index.html">Back to main portfolio ↑</a></div></footer>
-  <script>document.getElementById('year').textContent=new Date().getFullYear();(function(){const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;const bar=document.createElement('div');bar.className='motion-progress';bar.setAttribute('aria-hidden','true');document.body.appendChild(bar);let pending=false;function progress(){const max=document.documentElement.scrollHeight-innerHeight;bar.style.width=(max>0?scrollY/max*100:0)+'%';pending=false}addEventListener('scroll',()=>{if(!pending){requestAnimationFrame(progress);pending=true}},{passive:true});progress();const topbar=document.querySelector('.topbar');addEventListener('scroll',()=>topbar.classList.toggle('scrolled',scrollY>18),{passive:true});const targets=[...document.querySelectorAll('.section-head,.card,.workflow div')];if('IntersectionObserver'in window&&!reduce){const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}}),{threshold:.12});targets.forEach((el,i)=>{el.classList.add('reveal');el.style.transitionDelay=(i%4)*75+'ms';observer.observe(el)})}else targets.forEach(el=>el.classList.add('visible'));const steps=[...document.querySelectorAll('.workflow div')];if('IntersectionObserver'in window){const active=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting)steps.forEach(step=>step.classList.toggle('is-active',step===entry.target))}),{rootMargin:'-32% 0px -48% 0px',threshold:0});steps.forEach(step=>active.observe(step))}})();</script>
+  <script>
+document.getElementById('year').textContent=new Date().getFullYear();
+(function(){
+ const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+ const bar=document.createElement('div');bar.className='motion-progress';bar.setAttribute('aria-hidden','true');document.body.appendChild(bar);
+ let pending=false;
+ function updateProgress(){const max=document.documentElement.scrollHeight-innerHeight;bar.style.width=(max>0?scrollY/max*100:0)+'%';pending=false}
+ addEventListener('scroll',()=>{if(!pending){requestAnimationFrame(updateProgress);pending=true}},{passive:true});updateProgress();
+ const topbar=document.querySelector('.topbar');addEventListener('scroll',()=>topbar.classList.toggle('scrolled',scrollY>18),{passive:true});
+ const targets=[...document.querySelectorAll('.section-head,.card,.workflow div')];
+ if('IntersectionObserver'in window&&!reduce){
+  const reveal=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');reveal.unobserve(entry.target)}}),{threshold:.12});
+  targets.forEach((el,i)=>{el.classList.add('reveal');el.style.transitionDelay=(i%4)*110+'ms';reveal.observe(el)});
+ }else targets.forEach(el=>el.classList.add('visible'));
+ const steps=[...document.querySelectorAll('.workflow div')],flow=document.querySelector('.workflow');
+ if('IntersectionObserver'in window&&steps.length){
+  const active=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){const index=steps.indexOf(entry.target);steps.forEach((step,i)=>step.classList.toggle('is-active',i===index));flow.style.setProperty('--flow-progress',((index+1)/steps.length*88)+'%')}}),{rootMargin:'-35% 0px -45% 0px',threshold:0});
+  steps.forEach(step=>active.observe(step));
+ }
+ if(!reduce&&matchMedia('(hover:hover) and (pointer:fine)').matches){
+  document.querySelectorAll('.card').forEach(card=>{
+   card.addEventListener('pointermove',e=>{const r=card.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;card.style.setProperty('--spot-x',(x*100)+'%');card.style.setProperty('--spot-y',(y*100)+'%');card.style.transform='perspective(950px) rotateX('+((.5-y)*3)+'deg) rotateY('+((x-.5)*3)+'deg) translateY(-6px)'});
+   card.addEventListener('pointerleave',()=>{card.style.transform='';card.style.removeProperty('--spot-x');card.style.removeProperty('--spot-y')});
+  });
+ }
+})();
+</script>
 </body>
 </html>
